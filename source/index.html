@@ -1,12 +1,112 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <title>HTML Academy: Пинк</title>
-  </head>
-  <body>
 
-    <p>Репозиторий создан для обучения на профессиональном онлайн‑курсе «<a href="https://htmlacademy.ru/intensive/adaptive">HTML и CSS, уровень 2</a>».</p>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Academy: Пинк</title>
+</head>
 
-  </body>
+<body>
+  <div class="header">
+    <div class="header__header-backgraund header__header-backgraund_mobile">
+      <div class="header__png-hand"></div>
+    </div>
+    <div class="menu menu_mobile">
+      <img class="menu__logo-img menu__logo-img_mobile" src="#" alt="" width="10px" height="10px">
+      <img class="menu__logo-text menu__logo-text_mobile" src="#" alt="" width="10px" height="10px">
+
+      <ul class="menu__elements menu__elements_mobile menu__elements_open">
+        <li><a href="#">главная</a></li>
+        <li><a href="#">фотографии</a></li>
+        <li><a href="#">конкурс</a></li>
+        <li><a href="#">html academy</a></li>
+      </ul>
+    </div>
+
+    <div class="header__h1">
+      <h1>Взгляните на жизнь иначе!</h1>
+    </div>
+
+    <div class="dovnload-module">
+      <button class="custom-button">Скачать приложение</button>
+      <div class="dovnload-module__icons">
+        <img class="dovnload-module__icons__icon dovnload-module__icons__icon_apple" src="img/logo-apple.svg" alt=""
+          width="30px" height="30px">
+        <img class="dovnload-module__icons__icon dovnload-module__icons__icon_android" src="img/logo-android.svg" alt=""
+          width="30px" height="30px">
+        <img class="dovnload-module__icons__icon dovnload-module__icons__icon_microsoft" src="img/logo-microsoft.svg"
+          alt="" width="30px" height="30px">
+      </div>
+    </div>
+
+    <div class="dovnload-module__descr">
+      <p>Доступно для iPhone, iPad, Android, Windows Phone, OS X, Windows 8</p>
+    </div>
+  </div>
+
+  <main class="main">
+    <h2>Устали от серости мегаполиса?</h2>
+    <h2>Нам есть, что вам предложить!</h2>
+
+    <div class="intro intro_mobile">
+      <div class="intro__txt">
+        <p class="strong_text">Поднимает настроение</p>
+        <p>Приложение позволит вам победить осеннюю хандру и депрессию буквально в несколько кликов!</p>
+      </div>
+      <div class="intro__txt">
+        <p class="strong_text">Меняет мир вокруг</p>
+        <p>Сделайте снимок и украсьте его смайликом или текстовой подписью, чтобы усилить эффект</p>
+      </div>
+      <div class="intro__txt">
+        <p class="strong_text">Заводит новых друзей</p>
+        <p>Ставьте лайки, комментируйте, делитесь фотографиями с друзьями и заводите новых</p>
+      </div>
+
+      <img class="intro__img intro__img_phone1 intro__img_mobile" src="" alt="">
+      <img class="intro__img intro__img_phone2 intro__img_mobile" src="" alt="">
+      <img class="intro__img intro__img_phone3 intro__img_mobile" src="" alt="">
+    </div>
+
+    <div class="effect-info">
+      <img class="effect-info__image" src="" alt="">
+      <div class="effect-info__text">
+        <h3>Эффект на 24 часа!</h3>
+        <p>Британские ученые провели исследования и доказали, что положительный эффект от использования приложения
+          длится целые сутки!</p>
+        <a href="#">Узнать больше об исследовании</a>
+      </div>
+    </div>
+
+    <div class="js-addon_slider">
+      <div class="addon_slider__vieport">
+        <!--  на первый addon_slider__slide автоматом вешается доп класс js-addon_slide--active  -->
+        <div class="addon_slider__slide">
+          <p class="strong_text">Николай Петров</p>
+          <p>«Это приложение перевернуло мой мир и позволило по-новому взглянуть на привычные серые вещи! А еще я
+            познакомился со своей будущей женой в комментариях к выложенной фотографии!»</p>
+        </div>
+        <div class="addon_slider__slide">
+          <p class="strong_text">slide 2 заголовок</p>
+          <p>slide 2 текст</p>
+        </div>
+      </div>
+      <div class="addon_slider__input">
+        <!--  Автоматически добавляются скриптом, столько раз, сколько есть слайдов  -->
+        <!--     <input class="addon_slider__radio" type="radio" value="1" name="img"/> -->
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+
+  </footer>
+
+
+
+
+
+  <script src="js/addon_slider.js"></script>
+</body>
+
 </html>
