@@ -1,0 +1,131 @@
+
+.menu {
+    background-color: @const_menu_color;
+}
+
+.menu__input {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.menu__logo {
+    @media (min-width: 100px) {
+        content: url(../img/logo-pink-white-mobile.svg);
+    }
+
+    @media (min-width: @const_win_size_mobile) {
+        content: url(../img/logo-pink-white-mobile.svg);
+    }
+
+    @media (min-width: @const_win_size_tablet) {
+        content: url(../img/logo-pink-white-tablet.svg);
+    }
+
+    @media (min-width: @const_win_size_monitor) {
+        content: url(../img/logo-pink-white-desktop.svg);
+    }
+
+    width: fit-content;
+    height: auto;
+}
+
+.menu__buton {
+    @media (min-width: 100px) {
+        content: url(../img/icon-menu-burger.svg);
+    }
+
+    @media (min-width: @const_win_size_mobile) {
+        content: url(../img/icon-menu-burger.svg);
+    }
+
+    @media (min-width: @const_win_size_tablet) {
+        content: url(../img/icon-menu-burger.svg);
+    }
+
+    @media (min-width: @const_win_size_monitor) {
+        display: none;
+    }
+
+    width: fit-content;
+    height: auto;   
+
+    &--active {                                             // (class = "menu__buton--active") 
+        content: url(../img/icon-menu-cross.svg); 
+        width: fit-content;
+        height: auto;  
+
+        @media (min-width: @const_win_size_monitor) {
+            display: none;
+        }
+    }
+}
+
+
+
+
+.m_elements_mix() {
+    &--active {                                           // (class = "menu__elements--active") 
+        border-width: 1.5px;
+        border-top-color: #000000;
+        border-top-style: inset;
+        margin: 0px;
+        padding: 0px;
+
+        li {
+            list-style-type: none;                      /* убрать точки скраю */
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin: 0 auto;
+            text-align: center;
+            border-width: 1.5px;
+            border-bottom-color: #000000;
+            border-bottom-style: inset;
+            border-top-color: #b7b7b7;
+            border-top-style: inset;
+    
+            a {
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
+            }
+        }
+    }
+
+    li {
+        display: none;
+    }
+}
+
+.menu__elements {
+
+    @media (min-width: 100px) {
+        .m_elements_mix();
+    }
+
+    @media (min-width: @const_win_size_mobile) {
+        .m_elements_mix();
+    }
+
+    @media (min-width: @const_win_size_tablet) {
+        .m_elements_mix();
+    }
+
+    @media (min-width: @const_win_size_monitor) {               
+            margin: 0px;
+            padding: 0px;
+    
+            li {
+                display: block;
+                list-style-type: none;                      /* убрать точки скраю */
+                a {
+                    text-decoration: none;
+                    color: white;
+                    font-weight: bold;
+                }
+            }
+    }
+}

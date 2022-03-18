@@ -4,19 +4,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>HTML Academy: Пинк</title>
 </head>
 
-<body>
+<body class="body">
   <div class="header">
-    <div class="header__header-backgraund header__header-backgraund_mobile">
+    <div class="header__header-backgraund">
       <div class="header__png-hand"></div>
     </div>
-    <div class="menu menu_mobile">
-      <img class="menu__logo-img menu__logo-img_mobile" src="#" alt="" width="10px" height="10px">
-      <img class="menu__logo-text menu__logo-text_mobile" src="#" alt="" width="10px" height="10px">
+    <div class="menu">
+      <div class="menu__input">
+        <img class="menu__logo" alt="" width="10px" height="10px">
+        <img class="menu__buton--active" alt="" width="10px" height="10px">
+      </div>
 
-      <ul class="menu__elements menu__elements_mobile menu__elements_open">
+      <ul class="menu__elements--active">
         <li><a href="#">главная</a></li>
         <li><a href="#">фотографии</a></li>
         <li><a href="#">конкурс</a></li>
@@ -38,10 +42,10 @@
         <img class="dovnload-module__icons__icon dovnload-module__icons__icon_microsoft" src="img/logo-microsoft.svg"
           alt="" width="30px" height="30px">
       </div>
-    </div>
-
-    <div class="dovnload-module__descr">
-      <p>Доступно для iPhone, iPad, Android, Windows Phone, OS X, Windows 8</p>
+      
+      <div class="dovnload-module__descr">
+        <p>Доступно для iPhone, iPad, Android, Windows Phone, OS X, Windows 8</p>
+      </div>
     </div>
   </div>
 
@@ -49,7 +53,7 @@
     <h2>Устали от серости мегаполиса?</h2>
     <h2>Нам есть, что вам предложить!</h2>
 
-    <div class="intro intro_mobile">
+    <div class="intro">
       <div class="intro__txt">
         <p class="strong_text">Поднимает настроение</p>
         <p>Приложение позволит вам победить осеннюю хандру и депрессию буквально в несколько кликов!</p>
@@ -63,9 +67,9 @@
         <p>Ставьте лайки, комментируйте, делитесь фотографиями с друзьями и заводите новых</p>
       </div>
 
-      <img class="intro__img intro__img_phone1 intro__img_mobile" src="" alt="">
-      <img class="intro__img intro__img_phone2 intro__img_mobile" src="" alt="">
-      <img class="intro__img intro__img_phone3 intro__img_mobile" src="" alt="">
+      <img class="intro__img intro__img_phone1" src="" alt="">
+      <img class="intro__img intro__img_phone2" src="" alt="">
+      <img class="intro__img intro__img_phone3" src="" alt="">
     </div>
 
     <div class="effect-info">
@@ -88,7 +92,7 @@
         </div>
         <div class="addon_slider__slide">
           <p class="strong_text">slide 2 заголовок</p>
-          <p>slide 2 текст</p>
+          <p>slide 2 текст.</p>
         </div>
       </div>
       <div class="addon_slider__input">
