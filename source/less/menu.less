@@ -1,131 +1,197 @@
 
-.menu {
+.menu {                                                 // вся менюшка
     background-color: @const_menu_color;
+
+    &--active {                                         // меню в открытом состоянии
+        background-color: @const_menu_active_color;
+    }
+
+    @media (min-width: @const_win_size_monitor) {       // если у нас монитор
+        &,                                              // для меню, и
+        &--active {                                     // для открытого меню
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            background-color: @const_menu_color;
+        }
+    }
 }
 
-.menu__input {
+.menu__input {                                          // блок логотипа и кнопки в меню
     display: flex;
     justify-content: space-between;
     padding-left: 2%;
     padding-right: 2%;
     padding-top: 10px;
     padding-bottom: 10px;
+
+    @media (min-width: @const_win_size_monitor) {       // если у нас монитор
+        justify-content: center;
+        flex-basis: 20%;
+    }
 }
 
-.menu__logo {
-    @media (min-width: 100px) {
+.menu__logo {                                           // логотип
+    content: url(../img/logo-pink-white-mobile.svg);    // по умолчанию он будет мобильной версии
+    width: fit-content;                                 // ширина (под контент)
+    height: auto;                                       // высота авто
+
+    @media (min-width: @const_win_size_mobile) {        // если мобила
         content: url(../img/logo-pink-white-mobile.svg);
     }
 
-    @media (min-width: @const_win_size_mobile) {
-        content: url(../img/logo-pink-white-mobile.svg);
-    }
-
-    @media (min-width: @const_win_size_tablet) {
+    @media (min-width: @const_win_size_tablet) {        // если планшет
         content: url(../img/logo-pink-white-tablet.svg);
     }
 
-    @media (min-width: @const_win_size_monitor) {
+    @media (min-width: @const_win_size_monitor) {       // если монитор
         content: url(../img/logo-pink-white-desktop.svg);
+        flex-basis: 20%;
     }
-
-    width: fit-content;
-    height: auto;
 }
 
-.menu__buton {
-    @media (min-width: 100px) {
+.menu__buton {                                          // кнопка
+    width: fit-content;                                 // шырина под контент
+    height: auto;                                       // высота авто
+    cursor: pointer;                                    // вдруг мы подключим мышку к телефону
+    //filter: saturate(0%) brightness(10) hue-rotate(243deg);  // обьяснение на 84
+    content: url(../img/icon-menu-burger.svg);
+
+    @media (min-width: @const_win_size_mobile) {        // если мобила
         content: url(../img/icon-menu-burger.svg);
     }
 
-    @media (min-width: @const_win_size_mobile) {
+    @media (min-width: @const_win_size_tablet) {        // если планшет
         content: url(../img/icon-menu-burger.svg);
     }
 
-    @media (min-width: @const_win_size_tablet) {
-        content: url(../img/icon-menu-burger.svg);
-    }
-
-    @media (min-width: @const_win_size_monitor) {
+    @media (min-width: @const_win_size_monitor) {       // если монитор
         display: none;
     }
 
-    width: fit-content;
-    height: auto;   
-
-    &--active {                                             // (class = "menu__buton--active") 
+    &--active {                                         // активное состояние (class = "menu__buton--active") 
         content: url(../img/icon-menu-cross.svg); 
         width: fit-content;
         height: auto;  
 
-        @media (min-width: @const_win_size_monitor) {
-            display: none;
+
+        @media (min-width: @const_win_size_monitor) {   // если у нас монитор
+            display: none;                              // скрываем
         }
     }
+
+    // тестовый вариант изменения цвета у svg находящийся в отдельной папке.
+    // суть такова, у свг изначально задан максимально яркий цвет (любой, только не белый и не черный)
+    // а далее уже тут этот цвет можно корректировать фильтрами
+    // saturate() - насыщенность цвета
+    // brightness() - яркость
+    // hue-rotate() - поворот оттенка
+    // конешно наврятли удастся нормально подогнать цвет (под макет). поэтому тут это в режиме теста
+
+    &:hover {
+        transform: scale(1.1);
+      //  filter: saturate(100%) brightness(10) hue-rotate(243deg);
+    }
+
+    &:active {
+        transform: scale(1.2);
+       // filter: saturate(100%) brightness(10) hue-rotate(243deg);
+    }
+
 }
 
 
+.m_elements_mix() {                                       // стандартные стили элементов меню
 
+    display: none;                                        // отключить отображение по умолчанию
 
-.m_elements_mix() {
-    &--active {                                           // (class = "menu__elements--active") 
-        border-width: 1.5px;
+    &--active {                                           // активное состояние (class = "menu__elements--active") 
+        display: block;                                   // делаем видимым
+        border-width: 1.5px;                              // полоса по краям
         border-top-color: #000000;
         border-top-style: inset;
-        margin: 0px;
+        margin: 0px;                                      // сбросить оттступы у списка
         padding: 0px;
 
-        li {
-            list-style-type: none;                      /* убрать точки скраю */
-            padding-top: 10px;
+        li {                                              // элементы этого списка
+            list-style-type: none;                        /* убрать точки скраю */
+            padding-top: 10px;                            // отступы верх низ
             padding-bottom: 10px;
-            margin: 0 auto;
-            text-align: center;
-            border-width: 1.5px;
+            text-align: center;                           // выровнять текст по центру
+            border-width: 1.5px;                          // полосочки сверху и снизу элементов
             border-bottom-color: #000000;
             border-bottom-style: inset;
             border-top-color: #b7b7b7;
             border-top-style: inset;
     
-            a {
-                text-decoration: none;
-                color: white;
-                font-weight: bold;
+            a {                                         // параметры для ссылок внитри этих элементов
+                text-decoration: none;                  // убрать подчеркивание
+                color: white;                         // цвет текста
+                font-family: opensans_bold;             /* шрифт */
+                text-transform: uppercase;              /* Заглавные буквы */
+                font-size: @font_menu_li;               // размер текста
             }
         }
     }
+}
 
-    li {
-        display: none;
+.menu__elements {                                       // настройка стилий элементов меню
+
+    @media (min-width: @const_win_size_min) {           // все что мение мобил
+        .m_elements_mix();                              // применить стандартный набор стилей
+    }
+
+    @media (min-width: @const_win_size_mobile) {        // для мобил
+        .m_elements_mix();                              // применить стандартный набор стилей
+    }
+
+    @media (min-width: @const_win_size_tablet) {        // для планшета
+        .m_elements_mix();                              // применить стандартный набор стилей
+    }
+
+    @media (min-width: @const_win_size_monitor) {       // для монитора
+        &,                                              // для этого элемента и...
+        &--active {                                     // для его модификатора menu__elements--active
+            margin: 0px;                                // сбрасываем отступы
+            padding: 0px;
+            display: block;                             // делаем видимым
+            border: none;                               // выключаем обводку границы
+
+            display: flex;                              // настраиваем позиционирование элементов
+            justify-content: flex-start;                // расположение элементов
+            flex-wrap: wrap;
+            flex-basis: 60%;                            // выдиляем размер для элементов
+            column-gap: 10%;                            // расстояние между колонками (не мение)
+            row-gap: 5px;                               // расстояние между рядами
+            
+            li {                                        // внутренние элементы
+                list-style-type: none;                      /* убрать точки скраю */
+                padding-top: 0px;                           // убрать внутренние отступы
+                padding-bottom: 0px;
+                border: none;                               // выключаем обводку границы
+                a {                                         // настраиваем вид текста
+                    text-decoration: none;
+                    color: rgb(255, 255, 255);
+                    font-family: opensans_light;             /* шрифт */
+                    text-transform: capitalize;             /* Заглавные первые буквы */
+                    font-size: @font_menu_li;
+                }
+            }
+        }
     }
 }
 
-.menu__elements {
-
-    @media (min-width: 100px) {
-        .m_elements_mix();
+.menu__elements-container {                                 // настраиваем положение для элементов меню
+    @media (min-width: @const_win_size_monitor) {
+        margin-left: 5%;
+        margin-right: 5%;
     }
+}
 
-    @media (min-width: @const_win_size_mobile) {
-        .m_elements_mix();
-    }
-
-    @media (min-width: @const_win_size_tablet) {
-        .m_elements_mix();
-    }
-
-    @media (min-width: @const_win_size_monitor) {               
-            margin: 0px;
-            padding: 0px;
-    
-            li {
-                display: block;
-                list-style-type: none;                      /* убрать точки скраю */
-                a {
-                    text-decoration: none;
-                    color: white;
-                    font-weight: bold;
-                }
-            }
-    }
+.menu--container {                                          // настраиваем положение самого меню
+    width: 100vw;                                           // ширина на все окно
+    top: 0px;                                               // отступ с верху
+    position: absolute;                                     // позиционирование относительно радителя
 }
