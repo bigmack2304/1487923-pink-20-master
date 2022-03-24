@@ -1,5 +1,44 @@
-.body {
+// содержит общие стили а также стили для body
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.object--hidden {                 // вырезает блок, оставляя его внутринности и настройки
+    display: contents;
+
+    &:active {
+        display: contents;
+    }
+}
+
+.visually-hidden {                // скрывает блок вместе с содержимим
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+
+  .body {
+    box-sizing: border-box;
     background-color: @const_body_color;  
     overflow-x: hidden;
     font-family: opensans; 
+    font-size: @font_def_size;
+    min-width: @min_size_body;
 }
+
+.link {
+
+    &--os {
+        line-height: 0;
+        border: none;
+    }
+}
+

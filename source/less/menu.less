@@ -1,6 +1,7 @@
 
 .menu {                                                 // вся менюшка
     background-color: @const_menu_color;
+    z-index: 999;
 
     &--active {                                         // меню в открытом состоянии
         background-color: @const_menu_active_color;
@@ -14,6 +15,8 @@
             flex-direction: row;
             flex-wrap: nowrap;
             align-items: center;
+            padding-left: 130px;
+            padding-right: 130px;
             background-color: @const_menu_color;
         }
     }
@@ -22,48 +25,57 @@
 .menu__input {                                          // блок логотипа и кнопки в меню
     display: flex;
     justify-content: space-between;
-    padding-left: 2%;
-    padding-right: 2%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: @height_menu_close_mobile;
+
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {        // если планшет
+        height: @height_menu_close_tablet;
+    }
 
     @media (min-width: @const_win_size_monitor) {       // если у нас монитор
         justify-content: center;
-        flex-basis: 20%;
+        //flex-basis: 20%;
+        height: @height_menu_close_tablet;
+        padding: 0;
     }
 }
 
 .menu__logo {                                           // логотип
     content: url(../img/logo-pink-white-mobile.svg);    // по умолчанию он будет мобильной версии
-    width: fit-content;                                 // ширина (под контент)
+    width: @size_logo_mobile;                                 // ширина (под контент)
     height: auto;                                       // высота авто
 
-    @media (min-width: @const_win_size_mobile) {        // если мобила
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {        // если мобила
         content: url(../img/logo-pink-white-mobile.svg);
+        width: @size_logo_mobile;
     }
 
-    @media (min-width: @const_win_size_tablet) {        // если планшет
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {        // если планшет
         content: url(../img/logo-pink-white-tablet.svg);
+        width: @size_logo_tablet;
     }
 
     @media (min-width: @const_win_size_monitor) {       // если монитор
         content: url(../img/logo-pink-white-desktop.svg);
         flex-basis: 20%;
+        width: @size_logo_monitor;
     }
 }
 
 .menu__buton {                                          // кнопка
-    width: fit-content;                                 // шырина под контент
+    width: @size_btn_burger;                                 // шырина под контент
     height: auto;                                       // высота авто
     cursor: pointer;                                    // вдруг мы подключим мышку к телефону
     //filter: saturate(0%) brightness(10) hue-rotate(243deg);  // обьяснение на 84
     content: url(../img/icon-menu-burger.svg);
 
-    @media (min-width: @const_win_size_mobile) {        // если мобила
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {        // если мобила
         content: url(../img/icon-menu-burger.svg);
     }
 
-    @media (min-width: @const_win_size_tablet) {        // если планшет
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {        // если планшет
         content: url(../img/icon-menu-burger.svg);
     }
 
@@ -73,7 +85,7 @@
 
     &--active {                                         // активное состояние (class = "menu__buton--active") 
         content: url(../img/icon-menu-cross.svg); 
-        width: fit-content;
+        width: @size_btn_close;
         height: auto;  
 
 
@@ -109,17 +121,20 @@
 
     &--active {                                           // активное состояние (class = "menu__elements--active") 
         display: block;                                   // делаем видимым
-        border-width: 1.5px;                              // полоса по краям
+        border-width: 1.4px;                              // полоса по краям
         border-top-color: #000000;
         border-top-style: inset;
         margin: 0px;                                      // сбросить оттступы у списка
         padding: 0px;
+        overflow-y: auto;
+        max-height: 500px;
 
         li {                                              // элементы этого списка
             list-style-type: none;                        /* убрать точки скраю */
-            padding-top: 10px;                            // отступы верх низ
-            padding-bottom: 10px;
-            text-align: center;                           // выровнять текст по центру
+            height: @height_menu_li_mobile;               // высота элемента
+            display: flex;                                // этот и следующие 2, для выравнивания текста по центру
+            align-items: center;
+            justify-content: center;
             border-width: 1.5px;                          // полосочки сверху и снизу элементов
             border-bottom-color: #000000;
             border-bottom-style: inset;
@@ -139,38 +154,43 @@
 
 .menu__elements {                                       // настройка стилий элементов меню
 
-    @media (min-width: @const_win_size_min) {           // все что мение мобил
+    @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {           // все что мение мобил
         .m_elements_mix();                              // применить стандартный набор стилей
     }
 
-    @media (min-width: @const_win_size_mobile) {        // для мобил
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {        // для мобил
         .m_elements_mix();                              // применить стандартный набор стилей
     }
 
-    @media (min-width: @const_win_size_tablet) {        // для планшета
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {        // для планшета
         .m_elements_mix();                              // применить стандартный набор стилей
     }
 
     @media (min-width: @const_win_size_monitor) {       // для монитора
         &,                                              // для этого элемента и...
         &--active {                                     // для его модификатора menu__elements--active
-            margin: 0px;                                // сбрасываем отступы
+            margin: 10px 0px;                                // сбрасываем отступы
             padding: 0px;
-            display: block;                             // делаем видимым
+           // display: block;                             // делаем видимым
             border: none;                               // выключаем обводку границы
 
             display: flex;                              // настраиваем позиционирование элементов
-            justify-content: flex-start;                // расположение элементов
+            justify-content: space-between;             // расположение элементов
             flex-wrap: wrap;
-            flex-basis: 60%;                            // выдиляем размер для элементов
-            column-gap: 10%;                            // расстояние между колонками (не мение)
-            row-gap: 5px;                               // расстояние между рядами
+            flex-basis: 65%;                            // выдиляем размер для элементов
+           // flex-basis: 620px;
+            column-gap: 15px;                            // расстояние между колонками (не мение)
+            row-gap: 15px;                               // расстояние между рядами
             
             li {                                        // внутренние элементы
                 list-style-type: none;                      /* убрать точки скраю */
                 padding-top: 0px;                           // убрать внутренние отступы
                 padding-bottom: 0px;
                 border: none;                               // выключаем обводку границы
+               // flex-basis: 22%;
+                width: 141px;
+                text-align: center;
+
                 a {                                         // настраиваем вид текста
                     text-decoration: none;
                     color: rgb(255, 255, 255);
@@ -179,19 +199,23 @@
                     font-size: @font_menu_li;
                 }
             }
+
+            li:last-child {
+                margin-right: auto;
+            }
         }
     }
 }
 
 .menu__elements-container {                                 // настраиваем положение для элементов меню
     @media (min-width: @const_win_size_monitor) {
-        margin-left: 5%;
-        margin-right: 5%;
+
     }
 }
 
 .menu--container {                                          // настраиваем положение самого меню
     width: 100vw;                                           // ширина на все окно
+    min-width: @min_size_body;
     top: 0px;                                               // отступ с верху
     position: absolute;                                     // позиционирование относительно радителя
 }

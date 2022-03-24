@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(evt) {   // если DOM 
     });
 });
 
-let object_menu_btn = document.getElementsByClassName("menu__buton");
+const object_menu_btn = document.getElementsByClassName("menu__buton");
 for(let i=0; i < object_menu_btn.length; i++) {                                // обходим все найденные меню
     object_menu_btn[i].addEventListener('click', function (evt) {              // повесить на них обработчик "клик мышкой"
       menu_on_click(evt)
@@ -30,7 +30,7 @@ for(let i=0; i < object_menu_btn.length; i++) {                                /
 
   function muse_wheel() {                                                       // закрываем меню (при скролле)
     if (object_menu_btn.length != null) {
-        for (var i=0; i < object_menu_btn.length; i++) {
+        for (let i=0; i < object_menu_btn.length; i++) {
             object_menu_btn[i].classList.remove("menu__buton--active");
             object_menu_btn[i].parentElement.parentElement.children[1].classList.remove("menu__elements--active");
             object_menu_btn[i].parentElement.parentElement.classList.remove("menu--active");

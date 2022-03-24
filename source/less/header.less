@@ -1,11 +1,15 @@
 .header {
     background-color: @const_header_color;
 
-    @media (min-width: @const_win_size_mobile) {
+    @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {
+        min-height: auto;
+    }
+
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
         min-height: 100vh;
     }
 
-    @media (min-width: @const_win_size_tablet) {
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
         height: auto;
     }
 
@@ -21,11 +25,11 @@
     background-size: cover;
     position: relative;
 
-    @media (min-width: @const_win_size_mobile) {
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
         background-image: url(../img/bg-back-mobile@1x.jpg);
     }
 
-    @media (min-width: @const_win_size_tablet) {
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
         background-image: url(../img/bg-back-tablet@1x.jpg);
     }
 
@@ -39,21 +43,25 @@
     bottom: 0px;
     width: auto;
 
-    @media (min-width: @const_win_size_mobile) {
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
         content: url(../img/iphone-hand-mobile@1x.png);
-        height: 70%;
+        height: 65%;
+        transform: translateX(-27px);
     }
 
-    @media (min-width: @const_win_size_tablet) {
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
         content: url(../img/iphone-hand-tablet@1x.png);
         height: 70%;
-        right: 10%;
+        right: 6%;
     }
 
     @media (min-width: @const_win_size_monitor) {
         content: url(../img//iphone-hand-desktop@1x.png);
         height: 80%;
-        right: 5%;
+        right: 5%;   
+        animation: hand_anim 1s 1 ease-out;     // подключить анимацию
+        animation-delay: 0.5s;                  // задержка перед воспроизведением
+        animation-fill-mode: both;              // позиция элемента берется из 1го кадра анимации
     }
 }
 
@@ -62,22 +70,80 @@
     width: 100vw;
     overflow: hidden;
 
-    @media (min-width: @const_win_size_mobile) {
-        height:460px;
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+        height: 68vh;
+        min-height: @heder_min_h_step_0;
+        max-height: @heder_max_h_step_0;
         display: flex;
         justify-content: center;
     }
 
-    @media (min-width: @const_win_size_tablet) {
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
         height: 100vh;
+        min-height: @heder_min_h_step_1;
+        max-height: @heder_max_h_step_1;
         display: flex;
         justify-content: center;
     }
 
     @media (min-width: @const_win_size_monitor) {
         height: 100vh;
+        min-height: @heder_min_h_step_2;
+        max-height: @heder_max_h_step_2;
         display: flex;
         justify-content: center;
     }
 
+}
+
+.header__h1 {
+    margin: 0;
+    padding: 0;
+
+    h1 {
+        margin: 0;
+        padding: 0;
+        color: white;
+        font-family: opensans_light;
+        font-size: 24px;
+        font-weight: lighter;
+    }
+}
+
+.header__h1--set_pos {
+    text-align: center;
+
+
+    @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {
+        display: none;
+    }
+
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        top: 63px;
+        width: 100%;
+        height: 14vh;
+        min-height: 75px;
+    }
+
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+        display: block;
+
+        h1 {
+            font-size: 40px;
+        }
+    }
+
+    @media (min-width: @const_win_size_monitor) {
+        display: block;
+
+        h1 {
+            font-size: 50px;
+        }
+    }
 }

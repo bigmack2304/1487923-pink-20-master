@@ -1,0 +1,72 @@
+.dovnload-module {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    overflow: hidden;
+}
+
+.dovnload-module--set_pos {
+
+    @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {
+        max-width: @downld_module_max_w;
+        margin: 0 auto;
+        padding: 83px 10px 20px 10px;
+    }
+
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+        max-width: @downld_module_max_w;
+        margin: 0 auto;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+        max-width: @downld_module_max_w;
+        min-height: @heder_min_h_step_1;
+        max-height: @heder_max_h_step_1;
+        position: absolute;
+        top: 0;
+        right: 53%;
+        height: 100vh;
+        padding-top: 108px;
+        justify-content: center;
+    }
+
+    @media (min-width: @const_win_size_monitor) {
+        max-width: @downld_module_max_w;
+        min-height: @heder_min_h_step_2;
+        max-height: @heder_max_h_step_2;
+        position: absolute;
+        top: 0;
+        right: 56%;
+        height: 100vh;
+        padding-top: 108px;
+        justify-content: center;
+    }
+}
+
+.dovnload-module__icons {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 35px;
+    row-gap: 20px;
+}
+
+.dovnload-module__descr {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: white;
+
+    p {
+        margin: 0;
+        padding: 0;
+        line-height: 24px;
+        font-family: opensans_light;
+    }
+}
