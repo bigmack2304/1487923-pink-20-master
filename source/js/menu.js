@@ -3,9 +3,15 @@
 */ 
 
 document.addEventListener('DOMContentLoaded', function(evt) {   // если DOM загрузился
-    window.addEventListener('scroll', function(evt) {           // если мы скролим
-      muse_wheel();                                             // закрываем меню
-    });
+// событие на любой скролл
+ //   window.addEventListener('scroll', function(evt) {           // если мы скролим
+ //     muse_wheel();                                             // закрываем меню
+ //   });
+
+  // событие на любой клик
+ // window.addEventListener('click', function(evt) {           // если мы скролим
+ //   click(evt);                                             // закрываем меню
+ // });
 });
 
 const object_menu_btn = document.getElementsByClassName("menu__buton");
@@ -29,11 +35,15 @@ for(let i=0; i < object_menu_btn.length; i++) {                                /
   }
 
   function muse_wheel() {                                                       // закрываем меню (при скролле)
+    close_menu();
+  }
+
+  function close_menu() {
     if (object_menu_btn.length != null) {
-        for (let i=0; i < object_menu_btn.length; i++) {
-            object_menu_btn[i].classList.remove("menu__buton--active");
-            object_menu_btn[i].parentElement.parentElement.children[1].classList.remove("menu__elements--active");
-            object_menu_btn[i].parentElement.parentElement.classList.remove("menu--active");
-        }
+      for (let i=0; i < object_menu_btn.length; i++) {
+          object_menu_btn[i].classList.remove("menu__buton--active");
+          object_menu_btn[i].parentElement.parentElement.children[1].classList.remove("menu__elements--active");
+          object_menu_btn[i].parentElement.parentElement.classList.remove("menu--active");
+      }
     } 
   }

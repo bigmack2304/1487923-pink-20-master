@@ -43,25 +43,54 @@
 }
 
 .menu__logo {                                           // логотип
-    content: url(../img/logo-pink-white-mobile.svg);    // по умолчанию он будет мобильной версии
-    width: @size_logo_mobile;                                 // ширина (под контент)
-    height: auto;                                       // высота авто
+   // content: url(../img/logo-pink-white-mobile.svg);    // по умолчанию он будет мобильной версии
+    width: @size_w_logo_mobile;                                 // ширина (под контент)
+    height: @size_h_logo_mobile;
+    //height: auto;                                       // высота авто
+    //height: 100%;
+    display: none;
+    .menu-hover-mode();
+
+    @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {           // все что мение мобил
+        width: @size_w_logo_mobile;
+        height: @size_h_logo_mobile;
+        &--type-mobile {
+            display: block;
+          //  .menu-hover-mode();
+        }
+    }
 
     @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {        // если мобила
-        content: url(../img/logo-pink-white-mobile.svg);
-        width: @size_logo_mobile;
+    //    content: url(../img/logo-pink-white-mobile.svg);
+        width: @size_w_logo_mobile;
+        height: @size_h_logo_mobile;
+        &--type-mobile {
+            display: block;
+          //  .menu-hover-mode();
+        }
     }
 
     @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {        // если планшет
-        content: url(../img/logo-pink-white-tablet.svg);
-        width: @size_logo_tablet;
+    //    content: url(../img/logo-pink-white-tablet.svg);
+        width: @size_w_logo_tablet;
+        height: @size_h_logo_tablet;
+        &--type-tablet {
+            display: block;
+         //   .menu-hover-mode();
+        }
     }
 
     @media (min-width: @const_win_size_monitor) {       // если монитор
-        content: url(../img/logo-pink-white-desktop.svg);
-        flex-basis: 20%;
-        width: @size_logo_monitor;
+    //    content: url(../img/logo-pink-white-desktop.svg);
+    //    flex-basis: 20%;
+        width: @size_w_logo_monitor;
+        height: @size_h_logo_monitor;
+        &--type-desctop {
+            display: block;
+          //  .menu-hover-mode();
+        }
     }
+
 }
 
 .menu__buton {                                          // кнопка
@@ -87,7 +116,6 @@
         content: url(../img/icon-menu-cross.svg); 
         width: @size_btn_close;
         height: auto;  
-
 
         @media (min-width: @const_win_size_monitor) {   // если у нас монитор
             display: none;                              // скрываем
@@ -128,27 +156,6 @@
         padding: 0px;
         overflow-y: auto;
         max-height: 500px;
-
-        li {                                              // элементы этого списка
-            list-style-type: none;                        /* убрать точки скраю */
-            height: @height_menu_li_mobile;               // высота элемента
-            display: flex;                                // этот и следующие 2, для выравнивания текста по центру
-            align-items: center;
-            justify-content: center;
-            border-width: 1.5px;                          // полосочки сверху и снизу элементов
-            border-bottom-color: #000000;
-            border-bottom-style: inset;
-            border-top-color: #b7b7b7;
-            border-top-style: inset;
-    
-            a {                                         // параметры для ссылок внитри этих элементов
-                text-decoration: none;                  // убрать подчеркивание
-                color: white;                         // цвет текста
-                font-family: opensans_bold;             /* шрифт */
-                text-transform: uppercase;              /* Заглавные буквы */
-                font-size: @font_menu_li;               // размер текста
-            }
-        }
     }
 }
 
@@ -167,45 +174,118 @@
     }
 
     @media (min-width: @const_win_size_monitor) {       // для монитора
-        &,                                              // для этого элемента и...
-        &--active {                                     // для его модификатора menu__elements--active
-            margin: 10px 0px;                                // сбрасываем отступы
-            padding: 0px;
+        & {                                            // для этого элемента и...
+        //&,
+        //&--active {                                     // для его модификатора menu__elements--active
+           // margin: 10px 0px;                     // сбрасываем отступы
+           margin: 0;
+           padding:0;
            // display: block;                             // делаем видимым
             border: none;                               // выключаем обводку границы
 
             display: flex;                              // настраиваем позиционирование элементов
-            justify-content: space-between;             // расположение элементов
+            justify-content: flex-start;             // расположение элементов
             flex-wrap: wrap;
+            align-self: stretch;
             flex-basis: 65%;                            // выдиляем размер для элементов
            // flex-basis: 620px;
             column-gap: 15px;                            // расстояние между колонками (не мение)
             row-gap: 15px;                               // расстояние между рядами
-            
-            li {                                        // внутренние элементы
-                list-style-type: none;                      /* убрать точки скраю */
-                padding-top: 0px;                           // убрать внутренние отступы
-                padding-bottom: 0px;
-                border: none;                               // выключаем обводку границы
-               // flex-basis: 22%;
-                width: 141px;
-                text-align: center;
-
-                a {                                         // настраиваем вид текста
-                    text-decoration: none;
-                    color: rgb(255, 255, 255);
-                    font-family: opensans_light;             /* шрифт */
-                    text-transform: capitalize;             /* Заглавные первые буквы */
-                    font-size: @font_menu_li;
-                }
-            }
-
-            li:last-child {
-                margin-right: auto;
-            }
         }
     }
 }
+
+
+.m_element_mix() {
+    //border-bottom: none;
+    list-style-type: none;                        /* убрать точки скраю */
+    height: @height_menu_li_mobile;               // высота элемента
+    display: flex;                                // этот и следующие 2, для выравнивания текста по центру
+    align-items: center;
+    justify-content: center;
+    border-width: 1.5px;                          // полосочки сверху и снизу элементов
+    border-bottom-color: #000000;
+    border-bottom-style: inset;
+    border-top-color: #b7b7b7;
+    border-top-style: inset;
+
+    a {                                         // параметры для ссылок внитри этих элементов
+        text-decoration: none;                  // убрать подчеркивание
+        color: white;                         // цвет текста
+        font-family: opensans_bold;             /* шрифт */
+        text-transform: uppercase;              /* Заглавные буквы */
+        font-size: @font_menu_li;               // размер текста
+    }
+}
+
+.menu__element {
+    @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {           // все что мение мобил
+        .m_element_mix();                              // применить стандартный набор стилей
+    }
+
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {        // для мобил
+        .m_element_mix();                              // применить стандартный набор стилей
+    }
+
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {        // для планшета
+        .m_element_mix();                              // применить стандартный набор стилей
+    }
+
+    @media (min-width: @const_win_size_monitor) {
+        list-style-type: none;                      /* убрать точки скраю */
+        padding-top: 0px;                           // убрать внутренние отступы
+        padding-bottom: 0px;
+        border: none;                               // выключаем обводку границы
+        width: 141px;
+      //  text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--active {
+            padding-top: 4px;
+            border-bottom: white;
+            border-style: solid;
+            border-left-width: 0px;
+            border-right-width: 0px;
+            border-top-width: 0px;
+            border-bottom-width: 4px;
+        }
+
+        a {                                         // настраиваем вид текста
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            font-family: opensans_light;             /* шрифт */
+            text-transform: capitalize;             /* Заглавные первые буквы */
+            font-size: @font_menu_li;
+            text-align: center;
+            .menu-hover-mode();
+        }
+
+     //   &:last-child {
+     //       margin-right: auto;
+     //   }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .menu__elements-container {                                 // настраиваем положение для элементов меню
     @media (min-width: @const_win_size_monitor) {
@@ -218,4 +298,20 @@
     min-width: @min_size_body;
     top: 0px;                                               // отступ с верху
     position: absolute;                                     // позиционирование относительно радителя
+}
+
+.menu-hover-mode() {
+    fill: white;
+    color: white;
+
+    &:hover {
+        fill: #d22856;
+        color: #d22856;
+    }
+
+    &:active {
+        fill: white;
+        color: white;
+        opacity: 30%;
+    }
 }
