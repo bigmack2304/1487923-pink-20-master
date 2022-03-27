@@ -25,6 +25,26 @@
     overflow: hidden;
 }
 
+//-------наведение табом---------------------------------------
+
+.focus_mobile_mix() {
+    outline: none;
+}
+
+// отулючить стили наведения для мобил
+@media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {           // все что мение мобил
+    *:focus {
+        .focus_mobile_mix();
+    }                             
+}
+
+@media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {        // для мобил
+    *:focus {
+        .focus_mobile_mix();  
+    }                             
+}
+//----------------------------------------------
+
 .body {
     box-sizing: border-box;
     background-color: @const_body_color;  

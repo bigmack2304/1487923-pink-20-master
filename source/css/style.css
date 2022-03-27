@@ -77,6 +77,16 @@
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+@media (min-width: 50px) and (max-width: calc(320px - 1px)) {
+  *:focus {
+    outline: none;
+  }
+}
+@media (min-width: 320px) and (max-width: calc(660px - 1px)) {
+  *:focus {
+    outline: none;
+  }
+}
 .body {
   box-sizing: border-box;
   background-color: #d9d9d9;
@@ -113,6 +123,9 @@
 @media (min-width: 320px) and (max-width: calc(660px - 1px)) {
   .header {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 }
 @media (min-width: 660px) and (max-width: calc(1200px - 1px)) {
@@ -590,6 +603,8 @@
     margin: 0 auto;
     padding-bottom: 20px;
     padding-top: 20px;
+    flex-grow: 1;
+    justify-content: center;
   }
 }
 @media (min-width: 660px) and (max-width: calc(1200px - 1px)) {
