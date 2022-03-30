@@ -53,6 +53,10 @@
     font-size: @font_def_size;
     min-width: @min_size_body;
 
+    @media (min-width: @const_win_size_monitor) {
+        font-size: @font_monic_size;
+    }
+
     // cтиль скролла
     &::-webkit-scrollbar {      // весь скролл
         width: 10px;
@@ -77,6 +81,21 @@
     &--os {
         line-height: 0;
         border: none;
+    }
+
+    &--custom-hover {
+        color: #D22856;
+        text-decoration: none;
+
+        &:hover {
+            color: #283645;
+            text-decoration: underline;
+        }
+
+        &:active {
+            text-decoration: none;
+            opacity: 30%;
+        }
     }
 }
 

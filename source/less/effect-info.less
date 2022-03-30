@@ -1,0 +1,107 @@
+.effect-info {
+    display: none;
+
+    @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {
+
+    }
+  
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+
+    }
+  
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+        display: flex;
+        column-gap: 9%;
+        row-gap: 20px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+  
+    @media (min-width: @const_win_size_monitor) {
+        display: flex;
+        column-gap: 9%;
+        row-gap: 50px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+.effect-info--set-pos {
+    margin-top: 54px;
+    margin-bottom: 100px;
+
+    @media (min-width: @const_win_size_monitor) {
+        margin-top: 80px;
+        margin-bottom: 130px;
+    }
+}
+
+.effect-info__image {
+    position:relative;
+    font-size: 0px;
+
+    & svg:first-child {
+        fill: #c1c1c1;
+        width: auto;
+        height: 240px;
+
+        @media (min-width: @const_win_size_monitor) {
+            height: 300px;
+        }
+    }
+
+    &::before {
+        content: '';
+        width: 170px;
+        height: 170px;
+        display: block;
+        position: absolute;
+        border: 14px solid #D22856;
+        border-radius: 50%;
+        left: calc(49.5% - 85px);
+        top: calc(56.5% - 85px);
+
+        @media (min-width: @const_win_size_monitor) {
+            width: 200px;
+            height: 200px;
+            border: 18px solid #D22856;
+            left: calc(44% - 85px);
+            top: calc(52% - 85px);
+        }
+    }
+
+    &::after {
+        content: '24';
+        position: absolute;
+        top: calc(50% - 48px);
+        left: 0px;
+        font-size: 96px;
+        font-family: opensans;
+        color: #D22856;
+        font-weight: 700;
+        text-align: center;
+        width: 100%;
+
+        @media (min-width: @const_win_size_monitor) {
+            font-size: 120px;
+            top: calc(47% - 48px);
+        }
+    }
+}
+
+.effect-info__text {
+    max-width: 310px;
+    h3 {
+        font-weight: 700;
+        font-size: 30px;
+        margin: 0;
+    }
+
+    @media (min-width: @const_win_size_monitor) {
+        max-width: 535px;
+    }
+}

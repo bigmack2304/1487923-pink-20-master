@@ -1,0 +1,237 @@
+/*
+
+*/
+
+.intro {
+    @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+  
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+  
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+        display: grid;
+        justify-items: center;
+        justify-content: center;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: "image text1"
+						     "image text2"
+						     "image text3";
+        column-gap: 42px;
+
+        grid-auto-rows: auto;
+        grid-auto-columns: auto;
+    }
+  
+    @media (min-width: @const_win_size_monitor) {
+        display: grid;
+        justify-items: center;
+        justify-content: center;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto auto;
+        grid-template-areas:    "image1 image2 image3"
+                                "text1 text2 text3" ;
+        row-gap: 45px;
+    }
+}
+
+.intro__itm {
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+        max-width: 500px;
+    }
+
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+        min-width: 250px;
+        max-width: 400px;
+
+        &:nth-of-type(1) {
+            grid-area: text1;
+            justify-self:start;
+            align-self: end;
+        }
+        &:nth-of-type(2) {
+            grid-area: text2;
+            justify-self:start;
+            align-self: center;
+        }
+        &:nth-of-type(3) {
+            grid-area: text3;
+            justify-self:start;
+            align-self: start;
+        }
+
+        // остальные элементы
+        &:nth-of-type(2n+4) {     // 4, 6, 8, ...
+          //  background-color: rgb(27, 134, 0); 
+            .intro__h,
+            .intro__txt {
+                text-align: center;
+            }
+        }
+        &:nth-of-type(2n+5) {     // 5, 7, 9, ...
+          //  background-color: rgb(255, 123, 0);  
+        }
+    }
+
+    @media (min-width: @const_win_size_monitor) {
+        padding-left: 24px;
+        padding-right: 24px;
+        max-width: 500px;
+
+        &:nth-of-type(1) {
+            grid-area: text1;
+        }
+        &:nth-of-type(2) {
+            grid-area: text2;
+        }
+        &:nth-of-type(3) {
+            grid-area: text3;
+        }
+        // остальные элементы
+        &:nth-of-type(3n+4) {     // 4, 7, 10, ...
+          //  background-color: rgb(27, 134, 0); 
+        }
+        &:nth-of-type(3n+5) {     // 5, 8, 11, ...
+          //  background-color: rgb(255, 123, 0);  
+        }
+        &:nth-of-type(3n+6) {     // 6, 9, 12, ...
+          //  background-color: rgb(255, 38, 0);  
+        }
+    }
+}
+
+.intro__h {
+    margin: 0;
+    text-align: center;
+    line-height: 1.2em;
+
+    @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {
+        font-size: 18px;
+        margin-bottom: 18px;
+        margin-top: 37px;
+    }
+  
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+        font-size: 18px;
+        margin-bottom: 18px;
+        margin-top: 37px;
+    }
+
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+        font-size: 18px;
+        margin-bottom: 18px;
+        margin-top: 25px;
+        text-align: left;
+    }
+
+    @media (min-width: @const_win_size_monitor) {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+}
+
+.intro__txt {
+    text-align: center;
+    margin: 0;
+
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+        text-align: left;
+    }
+
+    @media (min-width: @const_win_size_monitor) {
+        font-size: 18px;
+    }
+}
+
+.intro__img_screens_mix() {
+    &--scr1 {
+        @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+            content: url(../img/iphone-screen-mobile@2x.png);
+        }
+      
+        @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+            content: url(../img/iphone-screen-3-tablet@2x.png);
+        }
+      
+        @media (min-width: @const_win_size_monitor) {
+            content: url(../img/iphone-screen-1-desktop@2x.png);
+        }
+    }
+
+    &--scr2 {
+        @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+            content: url(../img/iphone-screen-mobile@2x.png);
+        }
+      
+        @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+            content: url(../img/iphone-screen-2-tablet@2x.png);
+        }
+      
+        @media (min-width: @const_win_size_monitor) {
+            content: url(../img/iphone-screen-2-desktop@2x.png);
+        }
+    }
+
+    &--scr3 {
+        @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+            content: url(../img/iphone-screen-1-desktop@2x.png);
+        }
+      
+        @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+            content: url(../img/iphone-screen-2-desktop@2x.png);
+        }
+      
+        @media (min-width: @const_win_size_monitor) {
+            content: url(../img/iphone-screen-3-desktop@2x.png);
+        }
+    }
+}
+
+.intro__img {
+    display: none;
+    .intro__img_screens_mix();
+
+    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+        &:first-of-type {
+            display: block;
+            margin-top: 38px;
+            height: 320px;
+            width: 157px;
+        }
+    }
+
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+        &:first-of-type {
+            display: block;
+            margin-top: 38px;
+            height: 421px;
+            width: 237px;
+            grid-area: image;
+        }
+    }
+
+    @media (min-width: @const_win_size_monitor) {
+        display: block;
+        width: auto;
+        height: 300px;
+
+        &:nth-of-type(1) {
+            grid-area: image1;
+        }
+        &:nth-of-type(2) {
+            grid-area: image2;
+        }
+        &:nth-of-type(3) {
+            grid-area: image3;
+        }
+    }
+}

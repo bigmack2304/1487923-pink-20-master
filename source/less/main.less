@@ -1,0 +1,21 @@
+.main {
+   @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {
+      padding-left: 20px;
+      padding-right: 20px; 
+  }
+
+  @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+      padding-left: 20px;
+      padding-right: 20px; 
+  }
+
+  @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+      padding-left: 20px;
+      padding-right: 20px; 
+  }
+
+  @media (min-width: @const_win_size_monitor) {
+      padding-left: 150px;
+      padding-right: 150px; 
+  }
+}
