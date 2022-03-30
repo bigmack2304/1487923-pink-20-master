@@ -852,8 +852,8 @@
 }
 @media (min-width: 1200px) {
   .intro__itm {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: 30px;
+    padding-right: 30px;
     max-width: 500px;
   }
   .intro__itm:nth-of-type(1) {

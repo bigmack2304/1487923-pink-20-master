@@ -1,0 +1,41 @@
+.js-addon_slider {                  /* весь слайдер */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.addon_slider__vieport {            /* контейнер для слайдов */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.addon_slider__slide {              /* все слаиды */
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: 300px;                  /* !НУЖНАЯ ВЫСОТА */
+    transition: transform ease-in-out 1s;
+    /*---------------------*/
+    background-color: rgba(3, 104, 0, 0.5); 
+    outline: 2px solid rgb(255, 238, 0);
+}
+
+.addon_slider__slide img {          /* картинки в слайдерах */
+    object-fit: contain;            /* contain-чтоб вся влезла в область    cover-чтоб заполнила всю область*/
+    object-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+.addon_slider__slide-active {       /* активный слаид */
+
+    /*---------------------*/
+    background-color: rgb(3, 104, 0); 
+}
+
+
+
