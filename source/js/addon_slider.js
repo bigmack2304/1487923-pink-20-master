@@ -19,15 +19,6 @@
 
 */
 
-let old_window_size = document.documentElement.clientWidth; // ширина окна
-console.log(old_window_size);
-
-document.addEventListener('DOMContentLoaded', function(evt) {       // если DOM загрузился
-    window.addEventListener('resize', function(evt) {               // если мы меняем размер окна 
-        resize_upd();                                               // фызываем функцию
-    });
-});
-
 let object_sliders = document.getElementsByClassName("js-addon_slider");
 if (object_sliders != null) {
     init_sliders(object_sliders);
@@ -43,9 +34,16 @@ function init_sliders(input) {                                          // на�
     for (let i=0; i < input.length; i++) { 
         let slides_in_vieport = input[i].children[0].children.length;   // количество слайдов в вьюпорте слайдера
         if (slides_in_vieport != null) {
-            for (let k=0; k < slides_in_vieport; k++) {
+            //test
+            let slide_width = input[i].children[0].children[0].clientWidth;                     // ширина слайда
+            let vieport_width = input[i].children[0].clientWidth;                               // ширина вьюпорта ихного
+            let rafio_amount = slides_in_vieport / Math.floor((vieport_width / slide_width));   // сколько кнопок нужно создать
+           // for (let k=0; k < slides_in_vieport; k++) {
+            if (rafio_amount == 1) {continue;}                          // с одной кнопкой мы ничего не будем листать, не нужно ее создавать
+            for (let k=0; k < rafio_amount; k++) {                      // добавляем кнопки с учетом ихного количества в вьюпорте
                 let object_sliders_input = input[i].children[1];        // блок переключалок
-                let text_inputs = '<input class="addon_slider__radio" type="radio" value="' + k + '" name="addon_slider' + i + '_img"/>';
+                //let text_inputs = '<input class="addon_slider__radio" type="radio" value="' + k + '" name="addon_slider' + i + '_img"/>';
+                let text_inputs = '<input class="addon_slider__radio" type="radio" value="' + k + '" name="addon_slider' + i + "_" + k +'_img" id="addon_slider' + i + "_" + k +'_img"/> <label for="addon_slider' + i + "_" + k + '_img"></label>';
                 object_sliders_input.innerHTML += text_inputs;          // добавить 
             }
         }
@@ -77,7 +75,6 @@ function update_active_slide(DOM_obj) {                                         
     let obj_radio = DOM_obj.currentTarget;                                          // нажатый radio
     let obj_slides = obj_radio.parentElement.parentElement.children[0].children;    // контейнер слайдов (для этих radio)
     let old_radio_value = get_old_value(obj_slides);
-   // console.log(old_radio_value);
     for (let i=0; i < obj_slides.length; i++) {
         obj_slides[i].classList.remove("addon_slider__slide-active");               // снять активные слайды
     }
@@ -92,33 +89,21 @@ function updete_position(slide_num, old_slide_num, obj_slider) {     // пере
     if (old_slide_num === false) { return; }
 
     let obj_slides = obj_slider.children[0].children;   // массив всех слайдеров
-    let vp_width = obj_slider.clientWidth;              // ширина слайдера
+    //let vp_width = obj_slider.clientWidth;              // ширина слайдера
+    let vp_width = 100;
     let dir = (slide_num > old_slide_num) ? ("left") : ("right");
     let x_pos;
-
-    let k = 0;
-    do {
-        k++;
+   for (let k = 0; k < Math.abs(slide_num - old_slide_num); k++) {
         for (let i = 0; i < obj_slides.length; i++) {
             x_pos = string_to_number(obj_slides[i].style.transform);
 
             if (dir == "left") {
-                obj_slides[i].style.transform = 'translateX(' + (x_pos - vp_width) + 'px)';
+                obj_slides[i].style.transform = 'translateX(' + (x_pos - vp_width) + '%)';
             } else if (dir == "right") {
-                obj_slides[i].style.transform = 'translateX(' + (x_pos + vp_width) + 'px)';
+                obj_slides[i].style.transform = 'translateX(' + (x_pos + vp_width) + '%)';
             }
         }
-    } while (k < Math.abs(slide_num - old_slide_num));
-}
-
-function resize_upd() {
-    let new_window_size = document.documentElement.clientWidth;
-    console.log("old size: " + old_window_size + " new size: " + new_window_size); 
-    
-    
-    
-    //...
-    old_window_size = new_window_size;
+    }
 }
 
 function get_old_value (arry) {
@@ -134,6 +119,8 @@ function string_to_number(str) {
     if (str == '') {
        return 0;
     } else {
-       return Number(str.replace(/[^-1-9-0, ]/g,""));
+       //return Number(str.replace(/[^-1-9-0, ]/g,""));
+       return Number(str.replace(/[^- ^0-9]/g,""));
     }
 }
+

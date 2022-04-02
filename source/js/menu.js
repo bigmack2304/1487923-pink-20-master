@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function(evt) {   // если DOM 
           }
           break;
         }
-        console.log(err_n);
+      //  console.log(err_n);
         if (err_n == accept_classes.length) {
           close_menu();
         }
