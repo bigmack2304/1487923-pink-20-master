@@ -43,8 +43,12 @@ function init_sliders(input) {                                          // на�
             for (let k=0; k < rafio_amount; k++) {                      // добавляем кнопки с учетом ихного количества в вьюпорте
                 let object_sliders_input = input[i].children[1];        // блок переключалок
                 //let text_inputs = '<input class="addon_slider__radio" type="radio" value="' + k + '" name="addon_slider' + i + '_img"/>';
-                let text_inputs = '<input class="addon_slider__radio" type="radio" value="' + k + '" name="addon_slider' + i + "_" + k +'_img" id="addon_slider' + i + "_" + k +'_img"/> <label for="addon_slider' + i + "_" + k + '_img"></label>';
+                //let text_inputs = '<input class="addon_slider__radio" type="radio" value="' + k + '" name="addon_slider' + i + '_' + k +'_img" id="addon_slider' + i + '_' + k +'_img"/> <label for="addon_slider' + i + '_' + k + '_img"></label>';
+                let text_inputs = '<input class="addon_slider__radio" type="radio" value="' + k + '" name="addon_slider' + i + '_img" id="addon_slider' + i + '_' + k +'_img"/>';
                 object_sliders_input.innerHTML += text_inputs;          // добавить 
+
+                let text_label = '<label for="addon_slider' + i + '_' + k + '_img"></label>';
+                object_sliders_input.innerHTML += text_label; 
             }
         }
     }

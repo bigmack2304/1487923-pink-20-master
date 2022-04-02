@@ -1132,46 +1132,44 @@
   -moz-column-gap: 19px;
        column-gap: 19px;
 }
-/*.spoiler_1_style_inp {
-    input[type="radio"]:checked,            // для всех radio
-    input[type="radio"]:not(:checked) {
-       display: contents;
-    }
-
-    input[type="radio"] + label {           // сдежующий за radio label
-        width: 20px;
-        height: 20px;
-    }
-
-    input[type="radio"] + label::before,    // создать для label псевдо элементы
-    input[type="radio"] + label::after {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-    input[type="radio"] + label::after {    // последний элемент спозиционировать к первому
-        position: relative;
-        top: -100%;
-    }
-
-
-    input[type="radio"]:checked + label::before {
-        background-color: purple;
-        z-index: 1;
-    }
-    input[type="radio"]:checked + label::after {
-        z-index: -1;
-    }
-
-    input[type="radio"]:not(:checked) + label::before {
-        z-index: -1;
-    }
-    input[type="radio"]:not(:checked) + label::after {
-        background-color: green;
-        z-index: 1;
-    }*/
-/*
-}*/
+.spoiler_1_style_inp input[type="radio"]:checked,
+.spoiler_1_style_inp input[type="radio"]:not(:checked) {
+  display: contents;
+}
+.spoiler_1_style_inp input[type="radio"] + label {
+  width: 20px;
+  height: 20px;
+}
+.spoiler_1_style_inp input[type="radio"] + label::before,
+.spoiler_1_style_inp input[type="radio"] + label::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.spoiler_1_style_inp input[type="radio"] + label::after {
+  position: relative;
+  top: -100%;
+}
+.spoiler_1_style_inp input[type="radio"]:checked + label::before {
+  background-color: purple;
+  z-index: 1;
+  opacity: 100%;
+}
+.spoiler_1_style_inp input[type="radio"]:checked + label::after {
+  z-index: -1;
+  opacity: 0%;
+}
+.spoiler_1_style_inp input[type="radio"]:not(:checked) + label::before {
+  z-index: -1;
+  opacity: 0%;
+}
+.spoiler_1_style_inp input[type="radio"]:not(:checked) + label::after {
+  background-color: #28364542;
+  z-index: 1;
+  opacity: 100%;
+  transform: scale(50%);
+}
 
 /*# sourceMappingURL=style.css.map */
