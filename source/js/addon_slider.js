@@ -1,3 +1,5 @@
+'use strict';
+
 /*
     обработчик для слайдеров
 
@@ -24,22 +26,21 @@
 
 */
 
-
 // проверяет обьекты возвращаемые от getElementsByClassName
 // если там есть хоть 1 элемент, вернет true
-const is_ibject_valid = (obj) => {
+const is_object_valid = (obj) => {
     return (obj.length != 0) ? (true) : (false);
 }
 
 // после загрузки страницы, начинаем обработку, ищим слайдеры
 const object_sliders = document.getElementsByClassName("js-addon_slider");
-if (is_ibject_valid(object_sliders)) {
+if (is_object_valid(object_sliders)) {
     init_sliders(object_sliders);           //  добавляем переключалки к слайдерам
     init_sleders_radio(object_sliders);     //  активация первой переключалки и слайда в каждом слайдере
 }
 
 const obj_radio_label = document.getElementsByClassName("addon_slider__radio-label");
-if (is_ibject_valid(obj_radio_label)) {
+if (is_object_valid(obj_radio_label)) {
     for (let i=0; i < obj_radio_label.length; i++) {                                 
         obj_radio_label[i].addEventListener('keydown', function(evt) {
         if (evt.code == 'Enter') {
@@ -50,7 +51,7 @@ if (is_ibject_valid(obj_radio_label)) {
 
 
 const object_sliders_radio = document.getElementsByClassName("addon_slider__radio");
-if (is_ibject_valid(object_sliders_radio)) {
+if (is_object_valid(object_sliders_radio)) {
     init_active_slide(object_sliders_radio);    // вешаем на переключалки событие клик
 }
 

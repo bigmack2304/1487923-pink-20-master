@@ -161,6 +161,19 @@
 
 .menu__elements {                                       // настройка стилий элементов меню
 
+    // cтиль скролла
+    &::-webkit-scrollbar {      // весь скролл
+        width: 18px;
+
+        &-track {               // дорожка
+            background-color: @const_scroll_manu_trak_color;
+        }
+
+        &-thumb {               // плашка
+            background-color: @const_scroll_manu_tumb_color;
+        }
+    }
+
     @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {           // все что мение мобил
         .m_elements_mix();                              // применить стандартный набор стилей
     }
@@ -221,14 +234,26 @@
 .menu__element {
     @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {           // все что мение мобил
         .m_element_mix();                              // применить стандартный набор стилей
+
+        a {
+            .menu-hover-mode-2();
+        }
     }
 
     @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {        // для мобил
         .m_element_mix();                              // применить стандартный набор стилей
+        
+        a {
+            .menu-hover-mode-2();
+        }
     }
 
     @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {        // для планшета
         .m_element_mix();                              // применить стандартный набор стилей
+        
+        a {
+            .menu-hover-mode-2();
+        }
     }
 
     @media (min-width: @const_win_size_monitor) {
@@ -294,5 +319,18 @@
         fill: white;
         color: white;
         opacity: 30%;
+    }
+}
+
+.menu-hover-mode-2() {
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+        color: #D22856;
+    }
+
+    &:active {
+        color: #d2285542;
     }
 }

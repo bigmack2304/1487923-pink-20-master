@@ -1,17 +1,52 @@
+@media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {
+ 
+}
+
+@media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+ 
+}
+
+@media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+ 
+}
+
+@media (min-width: @const_win_size_monitor) {
+ 
+}
+
 // весь слайдер
 .slider_1_style {
     width: 100%;                        /*!!! ЗАДАТЬ ШИРИНУ СЛАЙДЕРА */
     min-height: 360px;                      /*!!! ЗАДАТЬ ВЫСОТУ СЛАЙДЕРА */
     padding-bottom: 60px;
     padding-top: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
-    row-gap: 44px;
+    //padding-left: 20px;
+    //padding-right: 20px;
+    row-gap: 35px;
+
+    @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {
+        display: none;
+    }
+
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+        row-gap: 30px;
+        padding-top: 0px;
+        max-width: 620px;
+        margin: 0 auto;
+    }
+
+    @media (min-width: @const_win_size_monitor) {
+        row-gap: 30px;
+        padding-top: 0px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
 }
 
 // вьюпорт слайдера
 .slider_1_style_vp {
   //  height: 360px;                      /*!!! ЗАДАТЬ ВЫСОТУ СЛАЙДЕРА */
+  align-items: center;
 }
 
 
@@ -30,28 +65,87 @@
     }
 }
 
+
 // внутренний контейнер слайда
 .slider_1_style_sl_cnntr {
-    text-align: center;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
+    row-gap: 15px;
+
+    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+        flex-direction: column-reverse;
+        row-gap: 30px;
+    }
+
+    @media (min-width: @const_win_size_monitor) {
+        flex-direction: column-reverse;
+        row-gap: 40px;
+    }
+
+}
+
+////////////////////////////////////////////////////////////////////////
+.addon_slider__slide_header {
+    text-align: center;
 
     p {
         line-height: 30px;
         margin: 0;
+
+        @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {
+            display: none;
+        }
+
+        @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
+            display: none;
+        }
+        @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+            font-size: 14px;
+        }
+        
+        @media (min-width: @const_win_size_monitor) {
+            font-size: 18px;
+        }
     }
 
     h3 {
         font-size: 18px;
         margin: 0;
-        margin-bottom: 20px;
         line-height: 30px;
         font-weight: 700;
+
+        @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+            font-size: 20px;
+        }
+        
+        @media (min-width: @const_win_size_monitor) {
+            font-size: 24px;
+        }
     }
 }
 
+.addon_slider__slide_main {
+    text-align: center;
+
+    p {
+        line-height: 30px;
+        margin: 0;
+
+        @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
+            font-size: 18px;
+        }
+        
+        @media (min-width: @const_win_size_monitor) {
+            font-size: 18px;
+        }
+
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////
 // панель для переключалок
 .slider_1_style_inp {
     justify-content: center;
@@ -82,9 +176,7 @@
     input[type="radio"]:checked + label {
         &::before {
             background-color: #28364500;
-            opacity: 100%;
             transform: scale(100%);
-            
             border-color: #283645;
             border-width: 5px;
             border-style: solid;
@@ -95,7 +187,13 @@
     input[type="radio"]:not(:checked) + label {
         &::before {
             background-color: #28364542;
-            opacity: 100%;
+            transform: scale(50%);
+            border: none;
+        }
+
+    // НЕ НАЖАТЫЙ radio : при наведении    
+        &:hover::before {
+            background-color: #283645bd;
             transform: scale(50%);
             border: none;
         }

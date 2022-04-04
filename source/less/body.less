@@ -59,20 +59,24 @@
 
     // cтиль скролла
     &::-webkit-scrollbar {      // весь скролл
-        width: 10px;
-        right: 10px;
-        position: relative;
+        width: 12px;
+ //       right: 10px;
+ //       position: relative;
 
         &-track {               // дорожка
-            background-color: rgb(117, 117, 117);
+            background-color: @const_scroll_trak_color;
         }
 
         &-thumb {               // плашка
-            background-color: rgb(255, 162, 40);
+            background-color: @const_scroll_tumb_color;
+        
             border-radius: 50px;
-            border-left: 1px;
+            border-left: 2px;
             border-left-style: solid;
-            border-left-color: black;
+            border-left-color: @const_scroll_trak_color;
+            border-right: 2px;
+            border-right-style: solid;
+            border-right-color: @const_scroll_trak_color;
         }
     }
 }
