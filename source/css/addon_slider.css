@@ -33,7 +33,7 @@
  /*   outline: 2px solid rgb(255, 238, 0);*/
 }
 
-.addon_slider__slide-active {                   /* активный слаид */
+.addon_slider__slide--active {                   /* активный слаид */
     /*---------------------*/
   /*  background-color: rgb(3, 104, 0); */
   /*  opacity: 100%;*/
