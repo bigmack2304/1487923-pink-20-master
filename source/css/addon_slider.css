@@ -4,10 +4,11 @@
 */
 
 .js-addon_slider {                          /* весь слайдер */
+    position: relative;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    overflow: hidden;
+  /*  overflow: hidden;*/
     width: 100%;                        /*!!! ЗАДАТЬ ШИРИНУ СЛАЙДЕРА */
 }
 

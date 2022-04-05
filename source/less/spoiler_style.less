@@ -1,18 +1,3 @@
-@media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {
- 
-}
-
-@media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
- 
-}
-
-@media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
- 
-}
-
-@media (min-width: @const_win_size_monitor) {
- 
-}
 
 // весь слайдер
 .slider_1_style {
@@ -198,4 +183,39 @@
             border: none;
         }
     }
+
+    @media (min-width: @const_win_size_monitor) {
+        display: none;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////
+// панель с кнопками
+
+.addon_slider__buttons {
+    display: none;
+
+    @media (min-width: @const_win_size_monitor) {
+        display: block;
+    }
+}
+
+.addon_slider__button {
+    position: absolute;
+    top: 29%;
+    left: -4%;
+
+    &::before {
+        content: "<";
+    }
+
+    &:nth-child(2) {
+        top: 29%;
+        left: 101%;
+
+        &::before {
+            content: ">";
+        }
+    }
+
 }

@@ -1299,5 +1299,33 @@
   transform: scale(50%);
   border: none;
 }
+@media (min-width: 1200px) {
+  .slider_1_style_inp {
+    display: none;
+  }
+}
+.addon_slider__buttons {
+  display: none;
+}
+@media (min-width: 1200px) {
+  .addon_slider__buttons {
+    display: block;
+  }
+}
+.addon_slider__button {
+  position: absolute;
+  top: 29%;
+  left: -4%;
+}
+.addon_slider__button::before {
+  content: "<";
+}
+.addon_slider__button:nth-child(2) {
+  top: 29%;
+  left: 101%;
+}
+.addon_slider__button:nth-child(2)::before {
+  content: ">";
+}
 
 /*# sourceMappingURL=style.css.map */

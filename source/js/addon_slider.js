@@ -22,6 +22,12 @@
  <!--     <input class="addon_slider__radio" type="radio" value="(номер переключалки)" name="addon_slider(номер слайдера на странице)_img" id="addon_slider(номер слайдера на странице)_(номер переключалки)_img"/> -->
  <!--     <label for="addon_slider(номер слайдера на странице)_(номер переключалки)_img" class="addon_slider__radio-label" tabindex="0"></label>
     </div>
+
+    <div class="addon_slider__buttons">
+        <!-- контейнер для кнопок переключения -->
+        <!-- сюда автоматически добавляются кнопки для переключения слайдов -->
+        <!-- <button name="sl_btn(индекс слайдера)(индекс кнопки)" value="(индекс кнопки 0-лево 1-право)" class="addon_slider__button"></button> -->
+    </div>
   </div>
 
 */
@@ -37,22 +43,27 @@ const object_sliders = document.getElementsByClassName("js-addon_slider");
 if (is_object_valid(object_sliders)) {
     init_sliders(object_sliders);           //  добавляем переключалки к слайдерам
     init_sleders_radio(object_sliders);     //  активация первой переключалки и слайда в каждом слайдере
-}
+    init_sliders_buttons(object_sliders);   //  добавить кнопки в слайдер
 
-const obj_radio_label = document.getElementsByClassName("addon_slider__radio-label");
-if (is_object_valid(obj_radio_label)) {
-    for (let i=0; i < obj_radio_label.length; i++) {                                 
-        obj_radio_label[i].addEventListener('keydown', function(evt) {
-        if (evt.code == 'Enter') {
-            label_on_enter(evt);            // вешаем на лейбел переключалки событие "нажатие ввода"
-        }});
+    const obj_radio_label = document.getElementsByClassName("addon_slider__radio-label");
+    if (is_object_valid(obj_radio_label)) {
+        for (let i=0; i < obj_radio_label.length; i++) {                                 
+            obj_radio_label[i].addEventListener('keydown', function(evt) {
+            if (evt.code == 'Enter') {
+                label_on_enter(evt);            // вешаем на лейбел переключалки событие "нажатие ввода"
+            }});
+        }
     }
-}
+    
+    const object_sliders_radio = document.getElementsByClassName("addon_slider__radio");
+    if (is_object_valid(object_sliders_radio)) {
+        init_active_slide(object_sliders_radio);    // вешаем на переключалки событие клик
+    }
 
-
-const object_sliders_radio = document.getElementsByClassName("addon_slider__radio");
-if (is_object_valid(object_sliders_radio)) {
-    init_active_slide(object_sliders_radio);    // вешаем на переключалки событие клик
+    const object_slider_btn = document.getElementsByClassName("addon_slider__button");
+    if (is_object_valid(object_slider_btn)) {
+        event_klick_for_btn(object_slider_btn);    // вешаем на переключалки событие клик
+    }
 }
 
 function init_sliders(DOM_obj) {                                          // находим все слайдеры, и добавляем к ним переключалки слайдов, в зависимости от количества слайдов
@@ -64,7 +75,11 @@ function init_sliders(DOM_obj) {                                          // н�
             let vieport_width = DOM_obj[i].children[0].clientWidth;                               // ширина вьюпорта ихного
             let rafio_amount = slides_in_vieport / Math.floor((vieport_width / slide_width));   // сколько кнопок нужно создать
            // for (let k=0; k < slides_in_vieport; k++) {
-            if (rafio_amount == 1) {continue;}                          // с одной кнопкой мы ничего не будем листать, не нужно ее создавать
+            if (rafio_amount == 1) {                                     // с одной кнопкой мы ничего не будем листать, не нужно ее создавать
+                DOM_obj[i].children[1].style.display = "none";           // отключаем рендеринг для этого блока
+                continue;
+            } 
+            
             for (let k=0; k < rafio_amount; k++) {                      // добавляем кнопки с учетом ихного количества в вьюпорте
                 let object_sliders_input = DOM_obj[i].children[1];        // блок переключалок
                 //let text_inputs = '<input class="addon_slider__radio" type="radio" value="' + k + '" name="addon_slider' + i + '_img"/>';
@@ -91,6 +106,27 @@ function init_sleders_radio(DOM_obj) {                                    // а�
     }
 }
 
+function init_sliders_buttons(DOM_obj) {                                // добовление к слайдерам кнопок переключения (влево вправо)
+    for (let i=0; i < DOM_obj.length; i++) {                 
+        let object_slider_input_btn = DOM_obj[i].children[2]; 
+
+        let slides_in_vieport = DOM_obj[i].children[0].children.length;                       // количество слайдов в вьюпорте слайдера
+        let slide_width = DOM_obj[i].children[0].children[0].clientWidth;                     // ширина слайда
+        let vieport_width = DOM_obj[i].children[0].clientWidth;                               // ширина вьюпорта ихного
+        let slide_amount = slides_in_vieport / Math.floor((vieport_width / slide_width));     // сколько слайдов поместится в вьюпорт
+        if (slide_amount == 1) {                                                              // если у нас все слайды влезают в вьюпорт то нету смысла добавлять кнопки
+            object_slider_input_btn.style.display = "none";                                   // отключаем рендеринг для этого блока
+            continue;
+        }
+
+
+        for (let k=0; k < 2; k++) {                                     // 2 раза вписываем кнопку
+            let text_btn = '<button name="sl_btn' + i + k + '" value="' + k + '" class="addon_slider__button"></button>';
+            object_slider_input_btn.innerHTML += text_btn;         
+        }
+    }
+}
+
 function label_on_enter(DOM_obj) {                                      // при выборе label и нажатии по нему enter
     let get_current_radio = DOM_obj.target.control;                     // определяем radio к которому он относится
     get_current_radio.checked = true;                                   // делаем этот radio фскивным
@@ -103,6 +139,84 @@ function init_active_slide(DOM_obj) {
             update_active_slide(evt.target);
         });
     }    
+}
+
+function event_klick_for_btn(DOM_obj) {
+    for (let i=0; i < DOM_obj.length; i++) {                            
+        DOM_obj[i].addEventListener('click', function (evt) {           
+            slider_btn_on_klick(evt.target);
+        });
+    }   
+}
+
+function slider_btn_on_klick(DOM_obj) {                                     // действие при нажатии кнопки
+    let X_mode = (DOM_obj.value == 0) ? ("left") : ("right");           // по value кнопки определяем куда нам нужно дыигать слайды
+    let slide_list = DOM_obj.parentElement.parentElement.children[0].children;
+    let input_div = DOM_obj.parentElement.parentElement.children[1].children;   // блок переключалок и лейблов
+ 
+    // проверяет можноли сдвинуть слайды в заданном направлении
+    let is_moved = () => {          
+        for (let i=0; i < slide_list.length; i++) {
+            if (X_mode == "left") {
+                if (slide_list[i].classList.contains("addon_slider__slide--active")) {
+                    if (i == 0) {
+                        return false;
+                    }
+                    return true;
+                }
+            } else if (X_mode == "right") {
+                if (slide_list[i].classList.contains("addon_slider__slide--active")) {
+                    if (i == (slide_list.length - 1)) {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+        }
+    } 
+
+    // имитирует нажатие на следующий по направлению radio
+    // тем самым двигая слаиды
+    let upd_current_radio = () => {
+        let start_index;
+        for (let i=0; i < input_div.length; i++) {      // сперва снимаем checked c активноко radio
+            if (input_div[i].classList.contains("addon_slider__radio")) {
+                if (input_div[i].checked == true) {
+                    input_div[i].checked = false;
+                    start_index = i;                    // запоминаем индекс старого активного radio
+                    break;
+                }
+            }
+        }
+
+        if (X_mode == "left") {                                                 // если направление сдвига в лево
+            for (let i = (start_index - 1); i >= 0; i--) {                      // начиная с позиции предыдущего активного radio ваижемся по заданному направлению в массиве
+                if (input_div[i].classList.contains("addon_slider__radio")) {   // если это radio (а у нас там есть еще и лейблы)
+                    input_div[i].checked = true;                                // делаем его нажатым
+                    update_active_slide(input_div[i]);                          // обновляем активный слайд
+                    break;                                                      // завершаем цыкл
+                }
+            }
+        } else if (X_mode == "right") {
+            for (let i = (start_index + 1); i < input_div.length; i++) {
+                if (input_div[i].classList.contains("addon_slider__radio")) {
+                    input_div[i].checked = true;
+                    update_active_slide(input_div[i]);
+                    break;
+                }
+            }
+        }
+    }
+
+    if (X_mode == "left") {                 // нажали кнопку в лево
+        if (is_moved()) {                   // если можно сдвинуть слаиды в лево
+            upd_current_radio();            // двигаем
+        }
+    } else if (X_mode == "right") {
+        if (is_moved()) {
+            upd_current_radio();
+        }
+    }
 }
 
 function update_active_slide(DOM_obj) {                                             // вызывается при нажатии на переключалку слайда
