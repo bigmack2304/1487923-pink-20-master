@@ -16,16 +16,46 @@ document.addEventListener('DOMContentLoaded', function(evt) {   // если DOM 
   });
 });
 
+//////////////////////////////////////////////////////////////////
+// нужно чтобы страницей можно было хоть както попользоватся без js
+// для этого по умолчанию в html сделаем меню открытым, а затем уже тут
+// в js в начале обработки мы найдем все менюшки и деактивируем их
+deactive_no_js();
+
+function deactive_no_js() {
+  const js_manu_actives = document.getElementsByClassName("js-menu");
+  const menu_elements_actives = document.getElementsByClassName("menu__elements");
+  const menu_button = document.getElementsByClassName("menu__buton");
+  // показать скрытую кнопку
+  for (let i=0; i < menu_button.length; i++) {      
+    menu_button[i].classList.remove("visually-hidden");
+  }
+  // обновить модификатор всего меню
+  for (let i=0; i < js_manu_actives.length; i++) {
+    js_manu_actives[i].classList.remove("js-menu--active");
+  }
+  // обновить модификатор блока элементов меню
+  for (let i=0; i < menu_elements_actives.length; i++) {
+    menu_elements_actives[i].classList.remove("menu__elements--active");
+    menu_elements_actives[i].classList.remove("menu__elements--no_js");
+  }
+}
+
+///////////////////////////////////////////////////////////////////
+
+  function evt_menu_on_click(evt) {
+    menu_on_click(evt);
+  }
+
+  function evt_menu_key_down(evt) {
+    if (evt.code == 'Enter') menu_on_click(evt);
+  }
+
   const object_menu_btn = document.getElementsByClassName("menu__buton");
   for(let i=0; i < object_menu_btn.length; i++) {                                // обходим все найденные меню
-    object_menu_btn[i].addEventListener('click', function (evt) {              // повесить на них обработчик "клик мышкой"
-      menu_on_click(evt)
-    }); 
-  
-    object_menu_btn[i].addEventListener('keydown', function(evt) {             // повесить на них обработчик "выбор enter,ом"
-      if (evt.code == 'Enter') menu_on_click(evt);
-    });
-  } 
+    object_menu_btn[i].addEventListener('click', evt_menu_on_click);             // повесить на них обработчик "клик мышкой"  
+    object_menu_btn[i].addEventListener('keydown', evt_menu_key_down);           // повесить на них обработчик "выбор enter,ом"
+  }
 
   function menu_on_click(DOM_obj) {                                             // открыть закрыть меню по кнопке
     let object_btn = DOM_obj.currentTarget;                

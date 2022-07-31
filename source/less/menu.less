@@ -2,6 +2,7 @@
 .js-menu {                                                 // вся менюшка
     background-color: @const_menu_color;
     z-index: 999;
+    padding: 0;
 
     &--active {                                         // меню в открытом состоянии
         background-color: @const_menu_active_color;
@@ -36,18 +37,14 @@
 
     @media (min-width: @const_win_size_monitor) {       // если у нас монитор
         justify-content: center;
-        //flex-basis: 20%;
         height: @height_menu_close_tablet;
         padding: 0;
     }
 }
 
 .menu__logo {                                           // логотип
-   // content: url(../img/logo-pink-white-mobile.svg);    // по умолчанию он будет мобильной версии
     width: @size_w_logo_mobile;                                 // ширина (под контент)
     height: @size_h_logo_mobile;
-    //height: auto;                                       // высота авто
-    //height: 100%;
     display: none;
     .menu-hover-mode();
 
@@ -56,56 +53,46 @@
         height: @size_h_logo_mobile;
         &--type-mobile {
             display: block;
-          //  .menu-hover-mode();
         }
     }
 
     @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {        // если мобила
-    //    content: url(../img/logo-pink-white-mobile.svg);
         width: @size_w_logo_mobile;
         height: @size_h_logo_mobile;
         &--type-mobile {
             display: block;
-          //  .menu-hover-mode();
         }
     }
 
     @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {        // если планшет
-    //    content: url(../img/logo-pink-white-tablet.svg);
         width: @size_w_logo_tablet;
         height: @size_h_logo_tablet;
         &--type-tablet {
             display: block;
-         //   .menu-hover-mode();
         }
     }
 
     @media (min-width: @const_win_size_monitor) {       // если монитор
-    //    content: url(../img/logo-pink-white-desktop.svg);
-    //    flex-basis: 20%;
         width: @size_w_logo_monitor;
         height: @size_h_logo_monitor;
         &--type-desctop {
             display: block;
-          //  .menu-hover-mode();
         }
     }
 
 }
 
 .menu__buton {                                          // кнопка
-    width: @size_btn_burger;                                 // шырина под контент
+    width: @size_btn_burger;                            // шырина под контент
     height: auto;                                       // высота авто
     cursor: pointer;                                    // вдруг мы подключим мышку к телефону
-    //filter: saturate(0%) brightness(10) hue-rotate(243deg);  // обьяснение на 84
-    content: url(../img/icon-menu-burger.svg);
-
-    @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {        // если мобила
-        content: url(../img/icon-menu-burger.svg);
-    }
-
-    @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {        // если планшет
-        content: url(../img/icon-menu-burger.svg);
+    transition: all ease 0.2s;
+    // задаем контент для img, закидываем в нее свгшный код
+    content: url("data:image/svg+xml,%3Csvg version='1.0' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 49.945 24.007' enable-background='new 0 0 49.945 24.007' xml:space='preserve'%3E%3Cg id='miu'%3E%3Cg id='editor_list_view_hambuger_menu_glyph'%3E%3Cg%3E%3Cpath id='path-1' fill='%23FFFFFF' d='M1.137,0C0.51,0,0,0.428,0,1.01v1.981c0,0.558,0.494,1.01,1.139,1.01h47.671 c0.628,0,1.138-0.428,1.138-1.01V1.01c0-0.558-0.494-1.01-1.138-1.01H1.137z M1.137,10.003C0.51,10.003,0,10.431,0,11.013v1.98 c0,0.557,0.494,1.01,1.139,1.01h47.671c0.628,0,1.138-0.428,1.138-1.01v-1.98c0-0.558-0.494-1.01-1.138-1.01H1.137z M1.137,20.005C0.51,20.005,0,20.434,0,21.016v1.981c0,0.557,0.494,1.01,1.139,1.01h47.671c0.628,0,1.138-0.428,1.138-1.01 v-1.981c0-0.558-0.494-1.011-1.138-1.011H1.137z'/%3E%3C/g%3E%3Cg%3E%3Cpath id='path-1_1_' fill='%23FFFFFF' d='M1.137,0C0.51,0,0,0.428,0,1.01v1.981c0,0.558,0.494,1.01,1.139,1.01h47.671 c0.628,0,1.138-0.428,1.138-1.01V1.01c0-0.558-0.494-1.01-1.138-1.01H1.137z M1.137,10.003C0.51,10.003,0,10.431,0,11.013v1.98 c0,0.557,0.494,1.01,1.139,1.01h47.671c0.628,0,1.138-0.428,1.138-1.01v-1.98c0-0.558-0.494-1.01-1.138-1.01H1.137z M1.137,20.005C0.51,20.005,0,20.434,0,21.016v1.981c0,0.557,0.494,1.01,1.139,1.01h47.671c0.628,0,1.138-0.428,1.138-1.01 v-1.981c0-0.558-0.494-1.011-1.138-1.011H1.137z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    
+    // при наведении тоже самое, только свг другово цвета (fill)
+    &:hover {
+     content: url("data:image/svg+xml,%3Csvg version='1.0' id='Layer_2' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 49.945 24.007' enable-background='new 0 0 49.945 24.007' xml:space='preserve'%3E%3Cg id='miu'%3E%3Cg id='editor_list_view_hambuger_menu_glyph'%3E%3Cg%3E%3Cpath id='path-1' fill='%23d22856' d='M1.137,0C0.51,0,0,0.428,0,1.01v1.981c0,0.558,0.494,1.01,1.139,1.01h47.671 c0.628,0,1.138-0.428,1.138-1.01V1.01c0-0.558-0.494-1.01-1.138-1.01H1.137z M1.137,10.003C0.51,10.003,0,10.431,0,11.013v1.98 c0,0.557,0.494,1.01,1.139,1.01h47.671c0.628,0,1.138-0.428,1.138-1.01v-1.98c0-0.558-0.494-1.01-1.138-1.01H1.137z M1.137,20.005C0.51,20.005,0,20.434,0,21.016v1.981c0,0.557,0.494,1.01,1.139,1.01h47.671c0.628,0,1.138-0.428,1.138-1.01 v-1.981c0-0.558-0.494-1.011-1.138-1.011H1.137z'/%3E%3C/g%3E%3Cg%3E%3Cpath id='path-1_1_' fill='%23d22856' d='M1.137,0C0.51,0,0,0.428,0,1.01v1.981c0,0.558,0.494,1.01,1.139,1.01h47.671 c0.628,0,1.138-0.428,1.138-1.01V1.01c0-0.558-0.494-1.01-1.138-1.01H1.137z M1.137,10.003C0.51,10.003,0,10.431,0,11.013v1.98 c0,0.557,0.494,1.01,1.139,1.01h47.671c0.628,0,1.138-0.428,1.138-1.01v-1.98c0-0.558-0.494-1.01-1.138-1.01H1.137z M1.137,20.005C0.51,20.005,0,20.434,0,21.016v1.981c0,0.557,0.494,1.01,1.139,1.01h47.671c0.628,0,1.138-0.428,1.138-1.01 v-1.981c0-0.558-0.494-1.011-1.138-1.011H1.137z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
 
     @media (min-width: @const_win_size_monitor) {       // если монитор
@@ -113,33 +100,20 @@
     }
 
     &--active {                                         // активное состояние (class = "menu__buton--active") 
-        content: url(../img/icon-menu-cross.svg); 
+    //    content: url(../img/icon-menu-cross.svg); 
+        content: url("data:image/svg+xml,%3Csvg version='1.0' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 23.867 23.867' enable-background='new 0 0 23.867 23.867' xml:space='preserve'%3E%3Cpath fill='%23FFFFFF' d='M15.087,11.933l8.56-8.559c0.293-0.293,0.293-0.768,0-1.061L21.554,0.22C21.414,0.079,21.223,0,21.023,0 c-0.199,0-0.391,0.079-0.529,0.22l-8.561,8.56l-8.56-8.56c-0.282-0.282-0.78-0.282-1.061,0L0.22,2.313 c-0.293,0.293-0.293,0.768,0,1.061l8.56,8.559l-8.56,8.559c-0.293,0.293-0.293,0.768,0,1.062l2.093,2.094 c0.141,0.142,0.331,0.22,0.53,0.22c0.199,0,0.39-0.078,0.53-0.22l8.561-8.56l8.56,8.56c0.141,0.142,0.332,0.22,0.53,0.22 c0.199,0,0.39-0.078,0.53-0.22l2.093-2.094c0.293-0.294,0.293-0.769,0-1.062L15.087,11.933z'/%3E%3C/svg%3E");
         width: @size_btn_close;
         height: auto;  
+        transform: translateX(-12px);
+
+        &:hover {
+            content: url("data:image/svg+xml,%3Csvg version='1.0' id='Layer_2' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 23.867 23.867' enable-background='new 0 0 23.867 23.867' xml:space='preserve'%3E%3Cpath fill='%23d22856' d='M15.087,11.933l8.56-8.559c0.293-0.293,0.293-0.768,0-1.061L21.554,0.22C21.414,0.079,21.223,0,21.023,0 c-0.199,0-0.391,0.079-0.529,0.22l-8.561,8.56l-8.56-8.56c-0.282-0.282-0.78-0.282-1.061,0L0.22,2.313 c-0.293,0.293-0.293,0.768,0,1.061l8.56,8.559l-8.56,8.559c-0.293,0.293-0.293,0.768,0,1.062l2.093,2.094 c0.141,0.142,0.331,0.22,0.53,0.22c0.199,0,0.39-0.078,0.53-0.22l8.561-8.56l8.56,8.56c0.141,0.142,0.332,0.22,0.53,0.22 c0.199,0,0.39-0.078,0.53-0.22l2.093-2.094c0.293-0.294,0.293-0.769,0-1.062L15.087,11.933z'/%3E%3C/svg%3E");
+        }
 
         @media (min-width: @const_win_size_monitor) {   // если у нас монитор
             display: none;                              // скрываем
         }
     }
-
-    // тестовый вариант изменения цвета у svg находящийся в отдельной папке.
-    // суть такова, у свг изначально задан максимально яркий цвет (любой, только не белый и не черный)
-    // а далее уже тут этот цвет можно корректировать фильтрами
-    // saturate() - насыщенность цвета
-    // brightness() - яркость
-    // hue-rotate() - поворот оттенка
-    // конешно наврятли удастся нормально подогнать цвет (под макет). поэтому тут это в режиме теста
-
-    &:hover {
-        transform: scale(1.1);
-      //  filter: saturate(100%) brightness(10) hue-rotate(243deg);
-    }
-
-    &:active {
-        transform: scale(1.2);
-       // filter: saturate(100%) brightness(10) hue-rotate(243deg);
-    }
-
 }
 
 
@@ -200,7 +174,7 @@
             justify-content: flex-start;             // расположение элементов
             flex-wrap: wrap;
             align-self: stretch;
-            flex-basis: 65%;                            // выдиляем размер для элементов
+            //flex-basis: 65%;                            // выдиляем размер для элементов
            // flex-basis: 620px;
             column-gap: 15px;                            // расстояние между колонками (не мение)
             row-gap: 15px;                               // расстояние между рядами
@@ -300,10 +274,13 @@
 }
 
 .menu--container {                                          // настраиваем положение самого меню
+    margin: 0;
+ //   padding: 0;
     width: 100vw;                                           // ширина на все окно
     min-width: @min_size_body;
     top: 0px;                                               // отступ с верху
     position: absolute;                                     // позиционирование относительно радителя
+    column-gap: 10%;
 }
 
 .menu-hover-mode() {
@@ -333,4 +310,8 @@
     &:active {
         color: #d2285542;
     }
+}
+
+.menu__elements--no_js {
+    max-height: 34vh;
 }

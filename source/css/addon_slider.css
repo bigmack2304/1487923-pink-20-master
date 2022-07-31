@@ -17,7 +17,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     overflow: hidden;
-    height: fit-content;                /*!!! ЗАДАТЬ ВЫСОТУ СЛАЙДЕРА */  
+    height: fit-content;                /*!!! ЗАДАТЬ ВЫСОТУ ВЬЮПОРТА */  
 }
 
 .addon_slider__slide {                          /* все слаиды */

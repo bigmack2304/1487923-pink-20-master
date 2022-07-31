@@ -200,21 +200,44 @@
     }
 }
 
+// кнопки переключения слаидов
 .addon_slider__button {
-    position: absolute;
-    top: 29%;
-    left: -4%;
+    position: absolute;                         // позицианируем их относительно всего блока слайдера (у него очевидно pos.relative)
+    top: 25%;                                   // двигаем с верху
+    left: -8%;                                  // двигаем с лева
+    margin: 0;                                  // сброшу отступы
+    padding: 0;
+    line-height: 0;                             // убираю свободное пространство снизу (буквально несколько пикселей, оно создается от этого параметра)
+    border-style: none;                         // убираю обводку у кнопки
+    background-color: #ffffff00;              // делаю ее фон прозрачным
+    opacity: 30%;                               // прозрачность по макету
 
-    &::before {
-        content: "<";
+    &:hover {                                   // при наведении
+        opacity: 80%;   
     }
 
-    &:nth-child(2) {
-        top: 29%;
-        left: 101%;
+    &:active {                                  // при нажатии
+        opacity: 10%;
+    }
 
-        &::before {
-            content: ">";
+    &::before {                                 // добавляю стрелочку (<) в виде свг
+        content: url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='21.706px' height='41.719px' viewBox='0 0 21.706 41.719' enable-background='new 0 0 21.706 41.719' xml:space='preserve'%3E%3Cpath fill='%23283645' d='M2.045,20.859L21.458,1.446c0.331-0.331,0.331-0.867,0-1.198c-0.33-0.331-0.867-0.331-1.197,0L0.248,20.261 c-0.331,0.33-0.331,0.867,0,1.197l20.013,20.013c0.164,0.165,0.382,0.248,0.599,0.248s0.434-0.083,0.599-0.248 c0.331-0.331,0.331-0.867,0-1.198L2.045,20.859z'/%3E%3C/svg%3E%0A");
+    }
+
+    &:nth-child(2) {                            // теперь переопределяем стили для второй кнопочки (>)
+        left: 105%;                             // двигаем с лева
+        transform: rotateZ(180deg);             // поворачиваем элемент на 180 градусов
+
+     /*   &::before {                           // или переопределяем before, добавляю стрелочку (>) в виде свг
+            content: url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='21.706px' height='41.719px' viewBox='0 0 21.706 41.719' enable-background='new 0 0 21.706 41.719' xml:space='preserve'%3E%3Cpath fill='%23283645' d='M19.661,20.859L0.248,1.446c-0.331-0.331-0.331-0.867,0-1.198c0.33-0.331,0.867-0.331,1.197,0l20.013,20.012 c0.33,0.33,0.33,0.867,0,1.197L1.445,41.471c-0.164,0.165-0.382,0.248-0.599,0.248s-0.434-0.083-0.599-0.248 c-0.331-0.331-0.331-0.867,0-1.198L19.661,20.859z'/%3E%3C/svg%3E%0A");
+        }   */
+    }
+
+    &--no_active {
+        opacity: 5%;
+
+        &:hover {
+            opacity: 5%;
         }
     }
 

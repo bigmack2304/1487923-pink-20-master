@@ -1,12 +1,19 @@
 .header {
     background-color: @const_header_color;
+    padding-top: 0px;
 
     @media (min-width: @const_win_size_min) and (max-width: calc(@const_win_size_mobile - 1px)) {
         min-height: auto;
+       // width: 100vw;
+
+        &--no_js {
+            padding-top: 34vh;
+        }
     }
 
     @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
         min-height: 100vh;
+      //  width: 100vw;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -30,14 +37,23 @@
 
     @media (min-width: @const_win_size_mobile) and (max-width: calc(@const_win_size_tablet - 1px)) {
         background-image: url(../img/bg-back-mobile@1x.jpg);
+        @media (min-resolution: 2dppx) {
+            background-image: url(../img/bg-back-mobile@2x.jpg);
+        }
     }
 
     @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
         background-image: url(../img/bg-back-tablet@1x.jpg);
+        @media (min-resolution: 2dppx) {
+            background-image: url(../img/bg-back-tablet@2x.jpg);
+        }
     }
 
     @media (min-width: @const_win_size_monitor) {
         background-image: url(../img/bg-back-desktop@1x.jpg);
+        @media (min-resolution: 2dppx) {
+            background-image: url(../img/bg-back-desktop@2x.jpg);
+        }
     }
 }
 
@@ -50,12 +66,18 @@
         content: url(../img/iphone-hand-mobile@1x.png);
         height: 65%;
         transform: translateX(-27px);
+        @media (min-resolution: 2dppx) {
+            content: url(../img/iphone-hand-mobile@2x.png);
+        }
     }
 
     @media (min-width: @const_win_size_tablet) and (max-width: calc(@const_win_size_monitor - 1px)) {
         content: url(../img/iphone-hand-tablet@1x.png);
         height: 70%;
         right: 6%;
+        @media (min-resolution: 2dppx) {
+            content: url(../img/iphone-hand-tablet@2x.png);
+        }
     }
 
     @media (min-width: @const_win_size_monitor) {
@@ -65,6 +87,9 @@
         animation: hand_anim 1s 1 ease-out;     // подключить анимацию
         animation-delay: 0.5s;                  // задержка перед воспроизведением
         animation-fill-mode: both;              // позиция элемента берется из 1го кадра анимации
+        @media (min-resolution: 2dppx) {
+            content: url(../img//iphone-hand-desktop@2x.png);
+        }
     }
 }
 

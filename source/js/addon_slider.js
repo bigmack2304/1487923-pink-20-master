@@ -38,31 +38,48 @@ const is_object_valid = (obj) => {
     return (obj.length != 0) ? (true) : (false);
 }
 
+function evt_lstr_keydown_radio_label(evt) {        // EventListener если мы ткнули ентером по лейблу радио
+    if (evt.code == 'Enter') {
+        label_on_enter(evt);           
+    }
+}
+
+function evt_lstr_click_radio(evt) {                // EventListener если мы ткнули мышью по лейблу радио
+    update_active_slide(evt.target);
+}
+
+function evt_lstr_click_btn(evt) {                  // EventListener если мы нажали на кнопку
+    slider_btn_on_klick(evt.target);
+}
+
 // после загрузки страницы, начинаем обработку, ищим слайдеры
-const object_sliders = document.getElementsByClassName("js-addon_slider");
-if (is_object_valid(object_sliders)) {
-    init_sliders(object_sliders);           //  добавляем переключалки к слайдерам
-    init_sleders_radio(object_sliders);     //  активация первой переключалки и слайда в каждом слайдере
-    init_sliders_buttons(object_sliders);   //  добавить кнопки в слайдер
+a_slider_init();
 
-    const obj_radio_label = document.getElementsByClassName("addon_slider__radio-label");
-    if (is_object_valid(obj_radio_label)) {
-        for (let i=0; i < obj_radio_label.length; i++) {                                 
-            obj_radio_label[i].addEventListener('keydown', function(evt) {
-            if (evt.code == 'Enter') {
-                label_on_enter(evt);            // вешаем на лейбел переключалки событие "нажатие ввода"
-            }});
+function a_slider_init() {
+    const object_sliders = document.getElementsByClassName("js-addon_slider");
+    if (is_object_valid(object_sliders)) {
+        init_sliders(object_sliders);           //  добавляем переключалки к слайдерам
+        init_sleders_radio(object_sliders);     //  активация первой переключалки и слайда в каждом слайдере
+        init_sliders_buttons(object_sliders);   //  добавить кнопки в слайдер
+
+        const obj_radio_label = document.getElementsByClassName("addon_slider__radio-label");
+        if (is_object_valid(obj_radio_label)) {
+            for (let i = 0; i < obj_radio_label.length; i++) {
+                obj_radio_label[i].removeEventListener('keydown', evt_lstr_keydown_radio_label);
+                obj_radio_label[i].addEventListener('keydown', evt_lstr_keydown_radio_label);
+            }
         }
-    }
-    
-    const object_sliders_radio = document.getElementsByClassName("addon_slider__radio");
-    if (is_object_valid(object_sliders_radio)) {
-        init_active_slide(object_sliders_radio);    // вешаем на переключалки событие клик
-    }
 
-    const object_slider_btn = document.getElementsByClassName("addon_slider__button");
-    if (is_object_valid(object_slider_btn)) {
-        event_klick_for_btn(object_slider_btn);    // вешаем на переключалки событие клик
+        const object_sliders_radio = document.getElementsByClassName("addon_slider__radio");
+        if (is_object_valid(object_sliders_radio)) {
+            init_active_slide(object_sliders_radio);    // вешаем на переключалки событие клик
+        }
+
+        const object_slider_btn = document.getElementsByClassName("addon_slider__button");
+        if (is_object_valid(object_slider_btn)) {
+            event_klick_for_btn(object_slider_btn);    // вешаем на кнопки событие клик
+            first_upd_style_btn(object_sliders);       // вешаем на кнопку за которой нет слаидов, класс не активной
+        }
     }
 }
 
@@ -101,7 +118,7 @@ function init_sleders_radio(DOM_obj) {                                    // а�
             object_radio.checked = true;                                // включаем первую переключалку
         }
         if (object_slide != null) {
-            object_slide.classList.toggle("addon_slider__slide--active");    // включаем первый слаид
+            object_slide.classList.add("addon_slider__slide--active");    // включаем первый слаид
         }
     }
 }
@@ -135,17 +152,15 @@ function label_on_enter(DOM_obj) {                                      // пр�
 
 function init_active_slide(DOM_obj) {                         
     for (let i=0; i < DOM_obj.length; i++) {                              // перебор всех переключалок слайдеров
-        DOM_obj[i].addEventListener('click', function (evt) {             // вешаем на них событие клик
-            update_active_slide(evt.target);
-        });
+        DOM_obj[i].removeEventListener('click', evt_lstr_click_radio); 
+        DOM_obj[i].addEventListener('click', evt_lstr_click_radio );      // вешаем на них событие клик
     }    
 }
 
 function event_klick_for_btn(DOM_obj) {
-    for (let i=0; i < DOM_obj.length; i++) {                            
-        DOM_obj[i].addEventListener('click', function (evt) {           
-            slider_btn_on_klick(evt.target);
-        });
+    for (let i=0; i < DOM_obj.length; i++) {  
+        DOM_obj[i].removeEventListener('click', evt_lstr_click_btn);                           
+        DOM_obj[i].addEventListener('click', evt_lstr_click_btn );          
     }   
 }
 
@@ -153,31 +168,10 @@ function slider_btn_on_klick(DOM_obj) {                                     // �
     let X_mode = (DOM_obj.value == 0) ? ("left") : ("right");           // по value кнопки определяем куда нам нужно дыигать слайды
     let slide_list = DOM_obj.parentElement.parentElement.children[0].children;
     let input_div = DOM_obj.parentElement.parentElement.children[1].children;   // блок переключалок и лейблов
- 
-    // проверяет можноли сдвинуть слайды в заданном направлении
-    let is_moved = () => {          
-        for (let i=0; i < slide_list.length; i++) {
-            if (X_mode == "left") {
-                if (slide_list[i].classList.contains("addon_slider__slide--active")) {
-                    if (i == 0) {
-                        return false;
-                    }
-                    return true;
-                }
-            } else if (X_mode == "right") {
-                if (slide_list[i].classList.contains("addon_slider__slide--active")) {
-                    if (i == (slide_list.length - 1)) {
-                        return false;
-                    }
-                    return true;
-                }
-            }
-        }
-    } 
 
     // имитирует нажатие на следующий по направлению radio
     // тем самым двигая слаиды
-    let upd_current_radio = () => {
+    const upd_current_radio = () => {
         let start_index;
         for (let i=0; i < input_div.length; i++) {      // сперва снимаем checked c активноко radio
             if (input_div[i].classList.contains("addon_slider__radio")) {
@@ -208,14 +202,89 @@ function slider_btn_on_klick(DOM_obj) {                                     // �
         }
     }
 
-    if (X_mode == "left") {                 // нажали кнопку в лево
-        if (is_moved()) {                   // если можно сдвинуть слаиды в лево
-            upd_current_radio();            // двигаем
+    if (X_mode == "left") {                       // нажали кнопку в лево
+        if (is_moved(X_mode,slide_list)) {                   // если можно сдвинуть слаиды в лево
+            upd_current_radio();                  // двигаем
         }
     } else if (X_mode == "right") {
-        if (is_moved()) {
+        if (is_moved(X_mode,slide_list)) {
             upd_current_radio();
         }
+    }
+    upd_btn_style(DOM_obj, slide_list);
+}
+
+
+
+// проверяет можноли сдвинуть слайды в заданном направлении
+//      проверяет, естьли за активным слайдом не активный слаид
+//      если да, то листать можно. 
+//  !!!! Но это работает не правильно если
+//      если у нас несколько слайдов в вьюпорте. Проверку нужно привязать к
+//      radio эдементам
+//          TODO пока не буду везде переделывать слайд-лист в контейнер радио
+//          проще сдесь перейти из слайд листа в контейнер радио. 
+
+function is_moved(mode, slide_list) {          
+    const slider_input = slide_list[0].parentElement.parentElement.children[1].children;    // переходим из контейнера слайдеров в контейнер переключалок
+    let is_old_radio = false;               // фдаг наличия радио сздаи, относительно текущего радио
+    let is_next_radio = false;              // фдаг наличия радио спереди, относительно текущего радио
+
+    for (let i=0; i < slider_input.length; i++) {
+        if (mode == "left") {
+            if (slider_input[i].classList.contains("addon_slider__radio")) {                           // это радио ?
+                if (slider_input[i].checked ) {                                                        // он нажат ?
+                    if (is_old_radio) {                                                                // до этого нам попадались радио элементы ?
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                is_old_radio = true;
+            }
+        } else if (mode == "right") {
+            if (slider_input[i].classList.contains("addon_slider__radio")) {
+                if (slider_input[i].checked ) {                                             // дошли до нажатого радио
+                    for (let k = i+1; k < slider_input.length; k++) {                       // запомним, идем дельше
+                        if (slider_input[k].classList.contains("addon_slider__radio")) {    //
+                            is_next_radio = true;
+                            break;
+                        }
+                    }
+                    if (is_next_radio) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+} 
+
+// делаем кнопку полупрозрачноей, если дальше по ее направлению нету слайда
+// принимает обьект кнопки и блок слайдеров этих кнопок (addon_slider__vieport)
+function upd_btn_style(obj_btn,slide_list) {
+    const btns = obj_btn.parentElement.children;
+    for (let i=0; i < 2; i++) {
+        btns[0].classList.remove("addon_slider__button--no_active")
+        btns[1].classList.remove("addon_slider__button--no_active")
+
+        if (!is_moved("left", slide_list)) {
+            btns[0].classList.add("addon_slider__button--no_active")
+        }
+        if (!is_moved("right", slide_list)) {
+            btns[1].classList.add("addon_slider__button--no_active")
+        }
+    }
+}
+
+// вызывается 1 раз при загрузке страницы
+function first_upd_style_btn(sliders) {
+    for (let i=0; i < sliders.length; i++) {
+        let slide_list = sliders[i].children[0].children;
+        let obj_btn = sliders[i].children[2].children[0];
+        upd_btn_style(obj_btn,slide_list);
     }
 }
 
@@ -228,6 +297,7 @@ function update_active_slide(DOM_obj) {                                         
     }
     obj_slides[obj_radio.value].classList.add("addon_slider__slide--active");        // установить новый активный слаид
     updete_position(Number(obj_radio.value), old_radio_value, obj_radio.parentElement.parentElement);
+    upd_btn_style(obj_radio.parentElement.parentElement.children[2].children[0] ,obj_slides);   // обновим стиль неактивности для кнопок
 }
 
 function updete_position(slide_num, old_slide_num, obj_slider) {     // передвигает слайдер лист, так чтобы на экране был активный слаид
@@ -241,12 +311,15 @@ function updete_position(slide_num, old_slide_num, obj_slider) {     // пере
     let vp_width = 100;
     let dir = (slide_num > old_slide_num) ? ("left") : ("right");
     let x_pos;
-   for (let k = 0; k < Math.abs(slide_num - old_slide_num); k++) {
+
+    for (let k = 0; k < Math.abs(slide_num - old_slide_num); k++) {
+
         for (let i = 0; i < obj_slides.length; i++) {
             x_pos = string_to_number(obj_slides[i].style.transform);
 
             if (dir == "left") {
                 obj_slides[i].style.transform = 'translateX(' + (x_pos - vp_width) + '%)';
+                
             } else if (dir == "right") {
                 obj_slides[i].style.transform = 'translateX(' + (x_pos + vp_width) + '%)';
             }
@@ -276,3 +349,4 @@ function string_to_number(str) {
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
