@@ -18,6 +18,7 @@
   "scripts": {
     "editorconfig": "editorconfig-cli",
     "stylelint": "stylelint \"source/less/**/*.less\" --syntax less",
+    "arfograf": "npm run editorconfig && npm run stylelint",
     "test": "mocha",
     "build": "gulp styles",
     "start": "gulp"
